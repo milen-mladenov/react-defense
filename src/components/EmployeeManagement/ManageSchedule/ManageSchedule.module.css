@@ -1,0 +1,40 @@
+.schedule_table_input {
+    margin: 3rem auto;
+    width: 70%;
+}
+
+.schedule_table_input th {
+    width: 10%;
+    height: 2.5rem;
+}
+
+.schedule_table_input tr:not(:first-child) {
+    height: 8rem;
+}
+.schedule_table_input td {
+    height: 8rem;
+}
+
+.tableHeader{
+    height: 3rem;
+}
+
+tbody {
+    width: 100%;
+    font-size: 1rem;
+    display: contents;
+    justify-items: center;
+}
+
+.months {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 37.5rem;
+    gap: 10px;
+    margin: 1.5rem auto 0;
+}
+
+.monthButton {
+    cursor: pointer;
+}

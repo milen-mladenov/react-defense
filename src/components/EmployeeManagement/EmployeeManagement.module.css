@@ -1,0 +1,16 @@
+.emp_management_buttons {
+    display: flex;
+    gap: 10px;
+    margin: 2rem auto;
+    width: fit-content;
+}
+
+.emp_management_buttons > button {
+    width: 20rem;
+    height: 4rem;
+    font-size: 2rem;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 3px 0;
+}
+

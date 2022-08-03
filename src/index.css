@@ -1,13 +1,139 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+  --base-light-gray: #E7E7E7;
+  --base-dark-gray: #C4C4C4;
+  --primary-button: #000000;
+  --light-green: #73cc2f;
+  --light-green-transparent: #73cc2f5e;
+  --green: #61a12fb4;
+  --dark-green: #396e12;
+  --light-red: #c44343;
+  --red: #a53b3ba2;
+  --dark-red: #962626;
+  --light-yellow: #e3d639;
+  --yellow: #b8ae28;
+  --dark-yellow: #8f8724;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+p:empty,
+h2:empty,
+h3:empty {
+  display: none;
+}
+
+body {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+ul,
+a {
+  text-decoration: none;
+  list-style: none;
+}
+
+header {
+  background-color: var(--base-light-gray);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  box-shadow: 0 1px 7px 0;
+  border-radius: 0 0 8px 8px;
+}
+
+header div {
+  display: flex;
+}
+
+#user_login_button {
+  height: 3rem;
+  padding: 1rem;
+  border: 0;
+  box-shadow: 0 0 4px 0;
+  margin-right: 0.5rem;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+#user_login_button:hover {
+  box-shadow: 0 0 7px 0;
+}
+
+button {
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+[data-order-section-status="active"] {
+  display: block;
+}
+
+[data-order-section-status="inactive"] {
+  display: none !important;
+}
+
+[data-order-button-status="active"] {
+  box-shadow: 0 4px 7px 0;
+}
+
+[data-order-button-status="inactive"] {
+  box-shadow: 0 0 2px 0;
+}
+
+[data-table-select-status="active"] {
+  display: block;
+}
+
+[data-table-select-status="inactive"] {
+  display: none !important;
+}
+
+[data-has-access="full"] {
+  display: block;
+}
+
+[data-has-access="partial"] {
+  display: block;
+}
+
+[data-has-access="none"] {
+  display: none;
+}
+
+[data-has-message="true"] {
+  display: block;
+}
+
+[data-has-message="false"] {
+  display: none;
+}
+
+[data-own-table="true"] {
+  color: var(--dark-green);
+  background-color: var(--green);
+}
+
+[data-own-table="true"]:hover {
+  background-color: var(--light-green);
+}
+
+[data-own-table="false"] {
+  color: var(--dark-yellow);
+  background-color: var(--yellow);
+}
+
+[data-own-table="false"]:hover {
+  background-color: var(--light-yellow);
+}
+
+[data-table-closed="true"] {
+  box-shadow: 0 0 10px 5px var(--light-red);
+  border-radius: 10px;
 }

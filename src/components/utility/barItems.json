@@ -1,0 +1,52 @@
+[
+    {
+        "id": 110,
+        "productCode": 10,
+        "productName": "coffee",
+        "retailPrice": 0.15,
+        "sellPrice": 0.70,
+        "systemQuant": 650,
+        "currentQuant": "",
+        "expirationDate": ""
+    },
+    {
+        "id": 111,
+        "productCode": 11,
+        "productName": "water",
+        "retailPrice": 0.80,
+        "sellPrice": 1.90,
+        "systemQuant": 300,
+        "currentQuant": "",
+        "expirationDate": ""
+    },
+    {
+        "id": 112,
+        "productCode": 12,
+        "productName": "coke",
+        "retailPrice": 1.30,
+        "sellPrice": 2.60,
+        "systemQuant": 150,
+        "currentQuant": "",
+        "expirationDate": ""
+    },
+    {
+        "id": 113,
+        "productCode": 13,
+        "productName": "soda",
+        "retailPrice": 0.9,
+        "sellPrice": 1.80,
+        "systemQuant": 120,
+        "currentQuant": "",
+        "expirationDate": ""
+    },
+    {
+        "id": 114,
+        "productCode": 14,
+        "productName": "fanta",
+        "retailPrice": 0.45,
+        "sellPrice": 1.20,
+        "systemQuant": 200,
+        "currentQuant": "",
+        "expirationDate": ""
+    }
+]

@@ -1,0 +1,100 @@
+{
+    "bar": [
+        {
+            "name": "bartenderOne",
+            "role": "reole1"
+        },
+        {
+            "name": "bartenderTwo",
+            "role": "reole1"
+        },
+        {
+            "name": "bartenderTree",
+            "role": "reole2"
+        },
+        {
+            "name": "bartenderFour",
+            "role": "reole2"
+        },
+        {
+            "name": "bartenderFive",
+            "role": "reole2"
+        },
+        {
+            "name": "bartenderSix",
+            "role": "reole2"
+        }
+    ],
+    "kitchen": [
+        {
+            "name": "cookOne",
+            "role": "reole1"
+        },
+        {
+            "name": "cookTwo",
+            "role": "reole1"
+        },
+        {
+            "name": "cookTree",
+            "role": "reole2"
+        },
+        {
+            "name": "cookFour",
+            "role": "reole1"
+        },
+        {
+            "name": "cookFive",
+            "role": "reole2"
+        },
+        {
+            "name": "cookSix",
+            "role": "reole1"
+        }
+    ],
+    "servers": [
+        {
+            "name": "serverOne",
+            "role": "reole1"
+        },
+        {
+            "name": "serverTwo",
+            "role": "reole1"
+        },
+        {
+            "name": "serverTree",
+            "role": "reole2"
+        },
+        {
+            "name": "serverFour",
+            "role": "reole2"
+        },
+        {
+            "name": "serverFive",
+            "role": "reole2"
+        },
+        {
+            "name": "serverSix",
+            "role": "reole2"
+        }
+    ],
+    "managers": [
+        {
+            "name": "managerOne"
+        },
+        {
+            "name": "managerTwo"
+        },
+        {
+            "name": "managerTree"
+        },
+        {
+            "name": "managerFour"
+        },
+        {
+            "name": "managerFive"
+        },
+        {
+            "name": "managerSix"
+        }
+    ]
+}

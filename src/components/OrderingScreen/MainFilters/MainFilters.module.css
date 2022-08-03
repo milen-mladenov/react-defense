@@ -1,0 +1,23 @@
+.navigation_buttons {
+    display: flex;
+    justify-content: center;
+    height: 5rem;
+    margin-top: 1rem;
+}
+
+.section_buttons {
+    display: flex;
+    gap: 20px;
+}
+.categorie_button {
+    width: 14rem;
+    padding: 1.5rem;
+    font-size: 1.5rem;
+    border: none;
+    box-shadow: 0 0 3px 0;
+    border-radius: 8px;
+}
+
+.categorie_button:hover {
+    box-shadow: 0 0 5px 0;
+}

@@ -1,0 +1,352 @@
+{
+    "20/7/2022": {
+        "kitchen": {
+            "cookOne": "8-16",
+            "cookTwo": "8-16",
+            "cookTree": "8-16",
+            "cookFour": "16-close",
+            "cookFive": "16-close",
+            "cookSix": "16-close"
+        },
+        "bar": {
+            "bartenderOne": "8-16",
+            "bartenderTwo": "8-16",
+            "bartenderTree": "12-20",
+            "bartenderfour": "16-close",
+            "bartenderfive": "20-close"
+        },
+        "floor": {
+            "serverOne": "7-16",
+            "serverTwo": "7-16",
+            "serverTree": "9-18",
+            "serverFour": "9-18",
+            "serverFive": "12-22",
+            "serverSix": "12-22",
+            "serverSeven": "18-close",
+            "serverEight": "18-close",
+            "serverNine": "18-close"
+        },
+        "floorManagement": {
+            "superOne": "7-18",
+            "superTwo": "7-18",
+            "superTree": "18-close",
+            "superFour": "18-close",
+            "managerOne": "12-22",
+            "managerTwo": "17-close"
+        }
+    },
+    "21/7/2022": {
+        "kitchen": {
+            "cookOne": "8-16",
+            "cookTwo": "8-16",
+            "cookTree": "8-16",
+            "cookFour": "16-close",
+            "cookFive": "16-close",
+            "cookSix": "16-close"
+        },
+        "bar": {
+            "bartenderOne": "8-16",
+            "bartenderTwo": "8-16",
+            "bartenderTree": "12-20",
+            "bartenderfour": "16-close",
+            "bartenderfive": "20-close"
+        },
+        "floor": {
+            "serverOne": "7-16",
+            "serverTwo": "7-16",
+            "serverTree": "9-18",
+            "serverFour": "9-18",
+            "serverFive": "12-22",
+            "serverSix": "12-22",
+            "serverSeven": "18-close",
+            "serverEight": "18-close",
+            "serverNine": "18-close"
+        },
+        "floorManagement": {
+            "superOne": "7-18",
+            "superTwo": "7-18",
+            "superTree": "18-close",
+            "superFour": "18-close",
+            "managerOne": "12-22",
+            "managerTwo": "17-close"
+        }
+    },
+    "22/7/2022": {
+        "kitchen": {
+            "cookOne": "8-16",
+            "cookTwo": "8-16",
+            "cookTree": "8-16",
+            "cookFour": "16-close",
+            "cookFive": "16-close",
+            "cookSix": "16-close"
+        },
+        "bar": {
+            "bartenderOne": "8-16",
+            "bartenderTwo": "8-16",
+            "bartenderTree": "12-20",
+            "bartenderfour": "16-close",
+            "bartenderfive": "20-close"
+        },
+        "floor": {
+            "serverOne": "7-16",
+            "serverTwo": "7-16",
+            "serverTree": "9-18",
+            "serverFour": "9-18",
+            "serverFive": "12-22",
+            "serverSix": "12-22",
+            "serverSeven": "18-close",
+            "serverEight": "18-close",
+            "serverNine": "18-close"
+        },
+        "floorManagement": {
+            "superOne": "7-18",
+            "superTwo": "7-18",
+            "superTree": "18-close",
+            "superFour": "18-close",
+            "managerOne": "12-22",
+            "managerTwo": "17-close"
+        }
+    },
+    "23/7/2022": {
+        "kitchen": {
+            "cookOne": "8-16",
+            "cookTwo": "8-16",
+            "cookTree": "8-16",
+            "cookFour": "16-close",
+            "cookFive": "16-close",
+            "cookSix": "16-close"
+        },
+        "bar": {
+            "bartenderOne": "8-16",
+            "bartenderTwo": "8-16",
+            "bartenderTree": "12-20",
+            "bartenderfour": "16-close",
+            "bartenderfive": "20-close"
+        },
+        "floor": {
+            "serverOne": "7-16",
+            "serverTwo": "7-16",
+            "serverTree": "9-18",
+            "serverFour": "9-18",
+            "serverFive": "12-22",
+            "serverSix": "12-22",
+            "serverSeven": "18-close",
+            "serverEight": "18-close",
+            "serverNine": "18-close"
+        },
+        "floorManagement": {
+            "superOne": "7-18",
+            "superTwo": "7-18",
+            "superTree": "18-close",
+            "superFour": "18-close",
+            "managerOne": "12-22",
+            "managerTwo": "17-close"
+        }
+    },
+    "24/7/2022": {
+        "kitchen": {
+            "cookOne": "8-16",
+            "cookTwo": "8-16",
+            "cookTree": "8-16",
+            "cookFour": "16-close",
+            "cookFive": "16-close",
+            "cookSix": "16-close"
+        },
+        "bar": {
+            "bartenderOne": "8-16",
+            "bartenderTwo": "8-16",
+            "bartenderTree": "12-20",
+            "bartenderfour": "16-close",
+            "bartenderfive": "20-close"
+        },
+        "floor": {
+            "serverOne": "7-16",
+            "serverTwo": "7-16",
+            "serverTree": "9-18",
+            "serverFour": "9-18",
+            "serverFive": "12-22",
+            "serverSix": "12-22",
+            "serverSeven": "18-close",
+            "serverEight": "18-close",
+            "serverNine": "18-close"
+        },
+        "floorManagement": {
+            "superOne": "7-18",
+            "superTwo": "7-18",
+            "superTree": "18-close",
+            "superFour": "18-close",
+            "managerOne": "12-22",
+            "managerTwo": "17-close"
+        }
+    },
+    "25/7/2022": {
+        "kitchen": {
+            "cookOne": "8-16",
+            "cookTwo": "8-16",
+            "cookTree": "8-16",
+            "cookFour": "16-close",
+            "cookFive": "16-close",
+            "cookSix": "16-close"
+        },
+        "bar": {
+            "bartenderOne": "8-16",
+            "bartenderTwo": "8-16",
+            "bartenderTree": "12-20",
+            "bartenderfour": "16-close",
+            "bartenderfive": "20-close"
+        },
+        "floor": {
+            "serverOne": "7-16",
+            "serverTwo": "7-16",
+            "serverTree": "9-18",
+            "serverFour": "9-18",
+            "serverFive": "12-22",
+            "serverSix": "12-22",
+            "serverSeven": "18-close",
+            "serverEight": "18-close",
+            "serverNine": "18-close"
+        },
+        "floorManagement": {
+            "superOne": "7-18",
+            "superTwo": "7-18",
+            "superTree": "18-close",
+            "superFour": "18-close",
+            "managerOne": "12-22",
+            "managerTwo": "17-close"
+        }
+    },
+    "26/7/2022": {
+        "kitchen": {
+            "cookOne": "8-16",
+            "cookTwo": "8-16",
+            "cookTree": "8-16",
+            "cookFour": "16-close",
+            "cookFive": "16-close",
+            "cookSix": "16-close"
+        },
+        "bar": {
+
+        },
+        "floor": {
+            "serverOne": "7-16",
+            "serverTwo": "7-16",
+            "serverTree": "9-18",
+            "serverFour": "9-18",
+            "serverFive": "12-22",
+            "serverSix": "12-22",
+            "serverSeven": "18-close",
+            "serverEight": "18-close",
+            "serverNine": "18-close"
+        },
+        "floorManagement": {
+            "superOne": "7-18",
+            "superTwo": "7-18",
+            "superTree": "18-close",
+            "superFour": "18-close",
+            "managerOne": "12-22",
+            "managerTwo": "17-close"
+        }
+    },
+    "27/7/2022": {
+        "kitchen": {
+            "cookOne": "8-16",
+            "cookTwo": "8-16",
+            "cookTree": "8-16",
+            "cookFour": "16-close",
+            "cookFive": "16-close",
+            "cookSix": "16-close"
+        },
+        "bar": {
+            "bartenderOne": "8-16",
+            "bartenderTwo": "8-16",
+            "bartenderTree": "12-20",
+            "bartenderfour": "16-close",
+            "bartenderfive": "20-close"
+        },
+        "floor": {
+            "serverOne": "7-16",
+            "serverTwo": "7-16",
+            "serverTree": "9-18",
+            "serverFour": "9-18",
+            "serverFive": "12-22",
+            "serverSix": "12-22",
+            "serverSeven": "18-close",
+            "serverEight": "18-close",
+            "serverNine": "18-close"
+        },
+        "floorManagement": {
+            "superOne": "7-18",
+            "superTwo": "7-18",
+            "superTree": "18-close",
+            "superFour": "18-close",
+            "managerOne": "12-22",
+            "managerTwo": "17-close"
+        }
+    },
+    "28/7/2022": {
+        "kitchen": {
+            "cookOne": "8-16",
+            "cookTwo": "8-16",
+            "cookTree": "8-16",
+            "cookFour": "16-close",
+            "cookFive": "16-close",
+            "cookSix": "16-close"
+        },
+        "bar": {
+            "bartenderOne": "8-16",
+            "bartenderTwo": "8-16",
+            "bartenderTree": "12-20",
+            "bartenderfour": "16-close",
+            "bartenderfive": "20-close"
+        },
+        "floor": {
+            "serverOne": "7-16",
+            "serverTwo": "7-16",
+            "serverTree": "9-18",
+            "serverFour": "9-18",
+            "serverFive": "12-22"
+        },
+        "floorManagement": {
+            "superOne": "7-18",
+            "superTwo": "7-18",
+            "managerOne": "12-22",
+            "managerTwo": "17-close"
+        }
+    },
+    "29/7/2022": {
+        "kitchen": {
+            "cookOne": "8-16",
+            "cookTwo": "8-16",
+            "cookTree": "8-16",
+            "cookFour": "16-close",
+            "cookFive": "16-close",
+            "cookSix": "16-close"
+        },
+        "bar": {
+            "bartenderOne": "8-16",
+            "bartenderTwo": "8-16",
+            "bartenderTree": "12-20",
+            "bartenderfour": "16-close",
+            "bartenderfive": "20-close"
+        },
+        "floor": {
+            "serverOne": "7-16",
+            "serverTwo": "7-16",
+            "serverTree": "9-18",
+            "serverFour": "9-18",
+            "serverFive": "12-22",
+            "serverSix": "12-22",
+            "serverSeven": "18-close",
+            "serverEight": "18-close",
+            "serverNine": "18-close"
+        },
+        "floorManagement": {
+            "superOne": "7-18",
+            "superTwo": "7-18",
+            "superTree": "18-close",
+            "superFour": "18-close",
+            "managerOne": "12-22",
+            "managerTwo": "17-close"
+        }
+    }
+}

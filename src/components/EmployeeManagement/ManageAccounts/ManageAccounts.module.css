@@ -1,0 +1,30 @@
+
+.employee_form {
+    background-color: var(--base-dark-gray);
+    margin: 15% auto;
+    width: 35rem;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 0 4px 0;
+}
+
+.create_employee {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.create_employee div {
+    width: 40%;
+}
+.create_employee div:last-child {
+    width: 100%;
+}
+
+.create_employee input {
+    width: 15rem;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 3px 0;
+}

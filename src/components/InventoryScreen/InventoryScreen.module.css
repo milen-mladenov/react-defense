@@ -1,0 +1,198 @@
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.table_section {
+    width: 80%;
+    margin: 5% auto;
+}
+
+table {
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+th,
+td,
+input {
+    text-align: center;
+    border: 1px solid black;
+    height: 20px;
+}
+
+[data-product] {
+    min-width: 35px;
+    width: 50px;
+}
+
+[data-product-name] {
+    min-width: 250px;
+}
+
+[data-product-number] {
+    min-width: 200px;
+}
+
+[data-product-retail-price],
+[data-product-sell-price],
+[data-product-sysyem-quant],
+[data-product-difference],
+[data-product-current-quant],
+input {
+    min-width: 50px;
+    width: 75px;
+}
+
+
+.recipe_form {
+    min-width: 400px;
+    width: 20%;
+    background-color: var(--base-dark-gray);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+    margin: 10% auto;
+    position: relative;
+    z-index: 1;
+    border-radius: 20px;
+    box-shadow: 0 0 7px 2px;
+}
+
+.recipe_category {
+    display: flex;
+    justify-content: center;
+}
+
+.recipe_category {
+    margin: 0.75rem 0;
+}
+
+.recipe_category input {
+    width: 45px;
+    cursor: pointer;
+}
+
+.recipe_input input {
+    padding-left: 0.5rem;
+    margin: 0.15rem;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 0 3px 0;
+    box-sizing: border-box;
+}
+
+.recipe_input>input:first-child {
+    text-align: left;
+    width: 235px
+}
+
+.recipe_input>input:nth-child(2) {
+    text-align: center;
+    width: 50px;
+}
+
+.recipe_submit_button {
+    cursor: pointer;
+    width: 50%;
+    padding: 0.25rem;
+    height: 1.5rem;
+    margin-top: .75rem;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 4px 2px;
+}
+
+.recipe_form {
+    display: none;
+}
+
+
+.new_items {
+    width: 70%;
+    min-width: 1300px;
+    background-color: var(--base-dark-gray);
+    margin: 3rem auto;
+    padding: 4rem 2rem;
+    border-radius: 20px;
+    box-shadow: 0 0 4px 1px;
+    position: relative;
+}
+
+.item {
+    display: flex;
+    padding-bottom: 7px;
+    border-bottom: 1px solid black;
+}
+
+.item input {
+    width: 90%;
+    height: 1.5rem;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0 0 3px 0;
+    margin-top: 3px;
+}
+
+.item label {
+    margin-top: 10px;
+    width: 15%;
+}
+
+.submit_btn {
+    cursor: pointer;
+    position: absolute;
+    width: 7rem;
+    height: 2rem;
+    padding: 0.5rem;
+    right: 2rem;
+    bottom: 1rem;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 4px 0;
+}
+
+.submit_btn:hover {
+    box-shadow: 0 0 6px 2px;
+}
+
+.form_buttons {
+    margin: 0 auto;
+    margin-top: 2rem;
+}
+.button {
+    width: 10rem;
+    margin-left: 5px;
+    padding: 1.5rem;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 4px 0;
+}
+
+.button:hover {
+    box-shadow: 0 0 6px 1px;
+}
+
+.restricted:hover {
+    cursor: not-allowed;
+}
+
+.Vgood {
+    background-color: lime;
+}
+.good {
+    color: white;
+    background-color: green;
+}
+.small {
+    background-color: salmon;
+}
+.medium {
+    background-color: rgb(184, 184, 29);
+}
+.high {
+    color: white;
+    background-color: red;
+}

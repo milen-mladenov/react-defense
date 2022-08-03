@@ -1,23 +1,40 @@
-import logo from './logo.svg';
 import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import { useState } from 'react';
+
+import { Header } from './components/Header/Header';
+import { InventoryScreen } from './components/InventoryScreen/InventoryScreen';
+import { Login } from './components/Login/Login';
+import { OrderingScreen } from './components/OrderingScreen/OrderingScreen'
+import { EmployeeManagement } from './components/EmployeeManagement/EmployeeManagement';
+import { ManageAccounts } from './components/EmployeeManagement/ManageAccounts/ManageAccounts'
+
 
 function App() {
+  const [loginStatus, setLoginStatus] = useState({
+    userName: "",
+    userAccess: ""
+  })
+
+  function handleUserStatus(user, access) {
+    setLoginStatus({
+      userName: user,
+      userAccess: access
+    })
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header user={loginStatus} />
+
+      <Routes>
+        <Route path='/' element={<Login handle={handleUserStatus} user={loginStatus} />} />
+        <Route path="/ordering" element={<OrderingScreen />} />
+        <Route path="/inventory" element={<InventoryScreen />} />
+        <Route path='/emp-management' element={<EmployeeManagement />} />
+        <Route path="/emp-management" element={<ManageAccounts />} />
+      </Routes>
+
     </div>
   );
 }

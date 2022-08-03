@@ -1,0 +1,56 @@
+.orders_section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    width: 800px;
+    margin: 1.5rem 0 0 0;
+}
+
+.order_section_action_type {
+    display: flex;
+    gap: 1rem;
+    margin-right: 25%;
+}
+.order_section_buttons {
+    display: flex;
+    width: 91%;
+    gap: 1rem;
+    margin: 0.5rem;
+}
+
+.order_section_button {
+    width: 91%;
+    margin: 0.5rem;
+    padding: 1rem;
+}
+
+
+.categorie_button {
+    width: 14rem;
+    padding: 1.5rem;
+    font-size: 1.5rem;
+    border: none;
+    box-shadow: 0 0 3px 0;
+    border-radius: 8px;
+}
+
+.categorie_button:hover {
+    box-shadow: 0 0 5px 0;
+}
+
+.send_order_button {
+    margin-top: 0.75rem;
+    padding: .75rem;
+    width: 330px;
+    font-size: 2rem;
+}
+
+.ordering_section {
+    height: 26rem;
+}
+
+.orderdered_items {
+    max-height: 25rem;
+    overflow-y: scroll;
+}

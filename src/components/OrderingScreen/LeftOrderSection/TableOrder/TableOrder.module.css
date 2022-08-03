@@ -1,0 +1,67 @@
+.orderdered_items {
+    width: 800px;
+    overflow-y: scroll;
+}
+
+.order_table {
+    border-collapse: collapse;
+    justify-content: end;
+    position: relative;
+}
+
+.order_table_head {
+    font-size: 1rem;
+}
+
+th,
+td {
+    font-size: 1.5rem;
+    width: 110px;
+    border: 1px solid;
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+    width: 320px;
+}
+
+td:nth-child(2n + 1) {
+    text-align: center;
+}
+
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+tr:nth-child(2n +1) {
+    background-color: var(--base-light-gray);
+}
+
+.order_number {
+    display: flex;
+    justify-content: space-between;
+}
+
+.order_number button {
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    font-size: 24px;
+}
+
+.order_number input {
+    height: 30px;
+    width: 45px;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 18px;
+}
+
+.ordered_item {
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 24px;
+    height: 100%;
+    text-align: left;
+    padding-left: 0.5rem;
+}
