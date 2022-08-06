@@ -16,15 +16,19 @@ export const Login = ({ handle, user }) => {
             password: 123321,
             access: "partial"
         },
-        server: {
+        serverOne: {
             password: 654321,
+            access: "normal"
+        },
+        serverTwo: {
+            password: 1,
             access: "normal"
         }
     }
 
-    function loginHandler(u,a) {
+    function loginHandler(u, a) {
         setState(true)
-        handle(u,a)
+        handle(u, a)
     }
     function logoutHandler() {
         setState(false)
@@ -35,9 +39,9 @@ export const Login = ({ handle, user }) => {
     }
     return (
         <>
-        <button onClick={test} >showUser</button>
+            <button onClick={test} >showUser</button>
             {!state && <LoginBox users={users} handleLogin={loginHandler} state={state} />}
-            <LoginNavigation access={user.userAccess}/>
+            <LoginNavigation access={user.userAccess} />
         </>
     )
 }

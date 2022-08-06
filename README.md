@@ -1,70 +1,74 @@
-# Getting Started with Create React App
+The project is created to be a part of a restaurant-management system.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The application is created with the idea that it will be a CLOSED system with limited access to the outside. 
 
-## Available Scripts
+Upon the initial load of the application you will need to login with a user (information on user login and how it works at the bottom)
 
-In the project directory, you can run:
 
-### `npm start`
+The idea of it is to have:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1.A basic employee management.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+2.Schedule management with a calendar display function:
+  2.1 Dynamic generation of months with basic information that displayed how many employees are on the schedule for that day per/department
+  2.2 Upon selecting a day you will be able to see the shifts per department 
+  2.3 If you have access to create schedule: 
+  2.3.1 You will be able to create a new schedule (for a day that does not have one)
+  2.3.2 Update schedule for a day that has a schedule and is (current / future date)
 
-### `npm test`
+3.Inventory management:
+  3.1 Adding new items to the inventory
+  3.2 Updating the current items (adding stock / updating stock values)
+  3.3 Recieving basic information on sales/waste per item (for the month/year) >>> subject to change
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+4.Ordering screen.
 
-### `npm run build`
+This is the main part of the project. From this screen you will have the option to:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  4.1 Open new tables
+  4.2 Manage currently opened tables:
+  4.2.1 Add new items to the table order
+  4.2.2 If the user has permitions(edit order/add a discount/delete item/delete table completely)
+  4.2.3 Close the table
+  4.2.4 In each of the tables you will be able to see who opened it, when, what are the items, what is the sum, if there are any notes for the table itself or on the items 
+  4.3 Main filters (the top section of the application) that will change the content of the buttons for fast ordering (the left middle section under the items section)
+  4.4 See a list with the open tables + individual information for them displayed within (number of guests if added), (options to edit if current user has access), (time the table has been opened) >>> subject to change
+  4.5 Ways to filter and sort the opened tables for convenience
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+------------------------------------------------------------------------------------------------
 
-### `npm run eject`
+<<<<< LOGIN INFORMATION >>>>>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The ways to login are based on a few things:
+    - if you have supervisor/management authorization you will be REQUIRED to log in WITH a password.
+    - if you are an employee with limited access you will be able to log in with either username or password (this is made for convenience / faster workflow)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+THE PASSWORDS ARE NUMBERS ONLY!
+THE USERNAMES ALWAYS START WITH A LETTER!
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Based on the initial input the field will change if the login attempt is with a password or with a username.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Upon submit based on the information you will be checked for the type of access << most likely to change >>
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Here are some default accounts for testing:
+users = {
+        admin: {
+            password: 123456,
+            access: "full",
+        },
+        super: {
+            password: 123321,
+            access: "partial"
+        },
+        serverOne: {
+            password: 654321,
+            access: "normal"
+        },
+        serverTwo: {
+            password: 1,
+            access: "normal"
+        }
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  
