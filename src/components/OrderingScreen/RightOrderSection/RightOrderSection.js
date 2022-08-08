@@ -3,17 +3,41 @@ import { MoreOptions } from './MoreOptions/MoreOptions'
 import { Table } from './Table/Table'
 import { TableOptions } from './TableSelect_options/TableOptions'
 import { useEffect, useState } from 'react'
+import closeMenu from '../../utility/svg/closeMenu.svg'
+import moment from 'moment'
 
 export const RightOrderSection = ({ newTable, currTables, table, selectTableHandler }) => {
 
     const [showInfo, setShowInfo] = useState(false)
+    const [createTable, setCreateTable] = useState(false)
 
     useEffect(() => {
         setShowInfo(true)
     }, [table[0]])
 
     function openNewTable() {
-        newTable("")
+        setCreateTable(true)
+
+
+
+    }
+
+    function handleTable(e) {
+        e.preventDefault()
+
+        let currTime = moment().format("hh:mm")
+        let data = new FormData()
+
+        let table = {
+            tableOpenedAt: currTime,
+            server: "",
+            tableNumber: data.get("tableNumber"),
+            tableGuests: data.get("numberOfGuests"),
+            tableNote: data.get("tableNote"),
+
+        }
+
+
     }
 
     return (
@@ -31,6 +55,36 @@ export const RightOrderSection = ({ newTable, currTables, table, selectTableHand
                         </div>
                     </div>
                 </div>
+            </section>}
+
+            {createTable && <section className={styles.newTableForm}>
+                <div onClick={() => setCreateTable(false)} className={styles.closeBtn}>
+                    <img src={closeMenu} />
+                </div>
+                <form onSubmit={handleTable}>
+                    <div className={styles.tableDetails}>
+                        <div>
+                            <label htmlFor='tableNumber'>
+                                Table №:
+                            </label>
+                            <input name='tableNumber' type="number" />
+
+                        </div>
+                        <div>
+                            <label htmlFor='numberOfGuests'>
+                                Guests:
+                            </label>
+                            <input name='numberOfGuests' type="number" />
+                        </div>
+                    </div>
+                    <div className={styles.tableNote}>
+                        <label htmlFor='tableNote'>
+                            Table Note:
+                        </label>
+                        <textarea name='tableNote' />
+                    </div>
+                    <button>Open</button>
+                </form>
             </section>}
 
             {showInfo && <section className={styles.opened_table_section}>

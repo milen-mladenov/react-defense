@@ -1,4 +1,5 @@
-.table_select_and_menu_section,.opened_table_section {
+.table_select_and_menu_section,
+.opened_table_section {
     text-align: center;
     width: 600px;
 
@@ -20,9 +21,11 @@
     gap: 1rem;
     padding: 0 2rem;
 }
+
 .table_options h3 {
     font-size: 2.5rem;
 }
+
 .table_show,
 .table_order {
     display: flex;
@@ -122,9 +125,11 @@
     cursor: pointer;
     font-size: 2rem;
 }
+
 .go_back_link h2:hover {
     color: rgb(129, 129, 129);
 }
+
 .people {
     position: absolute;
     bottom: 5px;
@@ -154,12 +159,14 @@
     text-align: left;
     margin-left: 4rem;
 }
+
 .opened_table_buttons {
     display: flex;
     gap: 0.5rem;
     margin: 0 auto 0.75rem;
     justify-content: center;
 }
+
 .opened_table_buttons button {
     width: 49%;
     font-size: 1.5rem;
@@ -171,4 +178,65 @@
 
 .opened_table_buttons button:hover {
     box-shadow: 0 2px 5px 0;
+}
+
+.newTableForm {
+    position: absolute;
+    background-color: var(--base-light-gray);
+    padding: 2rem;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 2px 0;
+}
+
+.tableDetails {
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.tableDetails div {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.25rem;
+}
+
+.newTableForm div label {
+    margin-right: 0.5rem;
+}
+
+.tableNote {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.5rem;
+}
+
+.tableNote textarea {
+    height: 4rem;
+    padding: 1rem;
+}
+
+.closeBtn {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    align-items: center;
+    padding: 0.35rem;
+    background-color: var(--base-dark-gray);
+    border-radius: 50%;
+    text-align: center;
+    width: 25px;
+    height: 25px;
+}
+
+.closeBtn img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    cursor: pointer;
+    width: 50%;
 }

@@ -8,7 +8,7 @@ export const Header = ({ user }) => {
     const [dropdown, setDropdown] = useState(false);
 
     function dropdownState() {
-        console.log("clicked");
+        
         setDropdown(!dropdown)
     }
     return (
