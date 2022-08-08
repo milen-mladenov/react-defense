@@ -1,10 +1,11 @@
+import { useEffect, useState } from 'react'
+import moment from 'moment'
 import styles from './RightOrderSection.module.css'
+import closeMenu from '../../utility/svg/closeMenu.svg'
+import { TableOptions } from './TableSelect_options/TableOptions'
 import { MoreOptions } from './MoreOptions/MoreOptions'
 import { Table } from './Table/Table'
-import { TableOptions } from './TableSelect_options/TableOptions'
-import { useEffect, useState } from 'react'
-import closeMenu from '../../utility/svg/closeMenu.svg'
-import moment from 'moment'
+
 
 export const RightOrderSection = ({ newTable, currTables, table, selectTableHandler }) => {
 
@@ -17,27 +18,27 @@ export const RightOrderSection = ({ newTable, currTables, table, selectTableHand
 
     function openNewTable() {
         setCreateTable(true)
-
-
-
     }
 
     function handleTable(e) {
         e.preventDefault()
 
-        let currTime = moment().format("hh:mm")
-        let data = new FormData()
-
-        let table = {
-            tableOpenedAt: currTime,
+        let currTime = moment().format("hh:mm:ss")
+        let data = new FormData(e.target)
+        
+        let tableInfo = {
+            id: `${currTime}/${data.get("tableNumber")}`,
+            time: currTime,
             server: "",
-            tableNumber: data.get("tableNumber"),
-            tableGuests: data.get("numberOfGuests"),
-            tableNote: data.get("tableNote"),
-
+            guests: data.get("numberOfGuests"),
+            note: data.get("tableNote"),
         }
 
+        let table = [data.get("tableNumber"), {}, tableInfo]
 
+
+        newTable(table)
+        setCreateTable(false)
     }
 
     return (
@@ -51,7 +52,7 @@ export const RightOrderSection = ({ newTable, currTables, table, selectTableHand
                     </div>
                     <div className={styles.tables}>
                         <div className={styles.opened_tables}>
-                            {currTables.map(table => <Table key={table[0]} selectTableHandler={selectTableHandler} table={table} />)}
+                            {currTables.map(table => <Table key={table[2].id} selectTableHandler={selectTableHandler} table={table} />)}
                         </div>
                     </div>
                 </div>
