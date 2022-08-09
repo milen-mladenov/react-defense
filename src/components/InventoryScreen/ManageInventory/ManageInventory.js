@@ -4,8 +4,8 @@ import styles from '../InventoryScreen.module.css'
 import { useState } from 'react'
 let total
 
-export const ManageInventory = () => {
-    const [calcDiff, setCalcDiff] = useState({});
+export const ManageInventory = ({ items }) => {
+    const [calcDiff, setCalcDiff] = useState(items);
 
     total = handleChange()
 
@@ -27,7 +27,7 @@ export const ManageInventory = () => {
     return (
         <div>
             <form onChange={handleChange}>
-                {barItems.map(item => <ItemManagement key={item.id} item={item} handleDiff={handleDiff} calc={handleChange} />)}
+                {items.map(item => <ItemManagement key={item.ProductID} item={item} handleDiff={handleDiff} calc={handleChange} />)}
                 <input type="submit" value="submit_item" id="submit_new_items" className={styles.submit_btn} />
             </form>
             <h2>Total: {total.toFixed(2)}</h2>

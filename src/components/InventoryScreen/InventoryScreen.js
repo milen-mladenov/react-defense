@@ -5,15 +5,30 @@ import barItems from '../utility/barItems.json'
 import { useState } from 'react'
 import { CreateNewItem } from './CreateNewItem/CreateNewItem'
 import { ItemManagement } from './ItemManagement/ItemManagement'
-import { getAllBarItems } from '../../services/BarServices'
+
+import { getAllInventory, getAllBarItems, getAllKitchenItems } from '../../services/InventoryApi'
 
 
 export const InventoryScreen = () => {
-    const [action, setAction] = useState("")
+    const [action, setAction] = useState("");
+    const [getItems, setGetItems] = useState([])
 
-    async function getBarItems() {
-        const testLog = await getAllBarItems()
-        console.log(testLog);
+    async function getFullInventory() {
+        const res = await getAllInventory()
+        setGetItems(res)
+        // res.map(item => console.log(item));
+    }
+
+    async function getFullBarInventory() {
+        const barRes = await getAllBarItems()
+        barRes.map(item => console.log(item));
+        setGetItems(barRes)
+    }
+
+    async function getFullKitchenInventory() {
+        const kitchenRes = await getAllKitchenItems()
+        kitchenRes.map(item => console.log(item));
+        setGetItems(kitchenRes)
     }
 
     function handleAction(act) {
@@ -22,9 +37,11 @@ export const InventoryScreen = () => {
     return (
         <section>
             <Forms handleAction={handleAction} />
-            <button onClick={getBarItems}>test</button>
+            <button onClick={getFullInventory}>Full</button>
+            <button onClick={getFullBarInventory}>Bar</button>
+            <button onClick={getFullKitchenInventory}>Kitchen</button>
             {action == "createItem" && <CreateNewItem />}
-            {action == "inventory" && <ManageInventory />}
+            {action == "inventory" && <ManageInventory items={getItems} />}
         </section>
     )
 }

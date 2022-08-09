@@ -6,24 +6,25 @@ export const ItemManagement = ({ item, handleDiff, calc }) => {
     const [input, setInput] = useState(item)
     const [color, setColor] = useState("good")
 
-    const difference = (Number(input.currentQuant) - Number(item.systemQuant));
-    const differencePerc = difference / Number(item.systemQuant) * 100;
-    const differenceAmount = difference * Number(item.retailPrice);
-    
+    const difference = (Number(input.CurrentQuant || 0) - Number(item.SystemQuantity));
+    const differencePerc = difference / Number(item.SystemQuantity) * 100;
+    const differenceAmount = difference * Number(item.RetailPrice);
+
     useEffect(() => {
-        handleDiff(item.id,differenceAmount)
-        if(differencePerc < 0 && differencePerc > -10 && differencePerc !== 0) {
+        handleDiff(item.ProductName, differenceAmount)
+        if (differencePerc < 0 && differencePerc > -10 && differencePerc !== 0) {
             setColor("small")
-        } else if(differencePerc <= -10 && differencePerc > -20 && differencePerc !== 0) {
+        } else if (differencePerc <= -10 && differencePerc > -20 && differencePerc !== 0) {
             setColor("medium")
-        } else if(differencePerc <= -20  && differencePerc !== 0) {
+        } else if (differencePerc <= -20 && differencePerc !== 0) {
             setColor("high")
-        } else if(differencePerc >= 0 && differencePerc < 10) {
+        } else if (differencePerc >= 0 && differencePerc < 10) {
             setColor("good")
         } else {
             setColor("Vgood")
         }
-    },[differenceAmount])
+
+    }, [differenceAmount])
 
     function handleInput(e) {
         let value = e.target.value;
@@ -33,43 +34,47 @@ export const ItemManagement = ({ item, handleDiff, calc }) => {
             ...old,
             [name]: value
         }))
+        console.log(`${name} + ${value}`);
+        console.log(difference);
+        console.log(differencePerc);
+        console.log(differenceAmount);
     }
 
     return (
         <div className={styles.item}>
             <label htmlFor="productCode">
                 <p>Product code</p>
-                <p>{input.productCode} </p>
+                <p>{input.ProductCode} </p>
             </label>
             <label htmlFor="product">
                 <p>product</p>
-                <p>{input.productName}</p>
+                <p>{input.ProductName}</p>
             </label>
             <label htmlFor="id">
-                <p>product number</p>
-                <p>{input.id}</p>
+                <p>Product ID</p>
+                <p>{input.ProductID}</p>
             </label>
             <label htmlFor="retailPrice">
                 <p>retail price</p>
-                <p>{input.retailPrice}</p>
+                <p>{input.RetailPrice}</p>
             </label>
             <label htmlFor="sellPrice">
                 <p>sell price</p>
-                <p>{input.sellPrice}</p>
+                <p>{input.SellPrice}</p>
             </label>
             <label htmlFor="systemQuant">
                 <p>system quant</p>
-                <p>{input.systemQuant}</p>
+                <p>{input.SystemQuantity}</p>
             </label>
             <label htmlFor="currentQuant">
                 <p>system quant</p>
-                <input type="text" name="currentQuant" placeholder="currentQuant" onBlur={calc} onChange={handleInput} value={input.currentQuant} />
+                <input type="text" name="currentQuant" placeholder="currentQuant" onBlur={calc} onChange={handleInput} value={input.CurrentQuant} />
             </label>
             <label htmlFor="difference">
                 <p>difference</p>
                 <p className={styles[color]}>{difference}</p>
             </label>
-            <label  htmlFor="difference">
+            <label htmlFor="difference">
                 <p>difference amount</p>
                 <p className={styles[color]}>{differenceAmount.toFixed(2)}</p>
             </label>
