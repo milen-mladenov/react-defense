@@ -1,19 +1,17 @@
-
-
 .scheduleInputWrapper {
     position: absolute;
-    top: 40%;
-    bottom: 0;
-    left: 30%;
-    right: 0;
+    top: 25%;
+    left: 40%;
     width: 450px;
-    padding: 1.5rem;
+    padding: 2.5rem 2.5rem 5rem;
     background-color: var(--base-light-gray);
+    box-shadow: 0 2px 6px 0;
+    border-radius: 4px;
 }
 
 .employeeField {
     display: grid;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(2, 1fr);
 }
 
 .employeeName {
@@ -27,5 +25,35 @@
 
 .radioSelect {
     display: flex;
-    margin-bottom:1rem ;
+    margin-bottom: 1rem;
+}
+
+.closeSchedule {
+    position: absolute;
+    padding: 0.5rem;
+    width: 40px;
+    height: 40px;
+    top: -15px;
+    right: -15px;
+    border-radius: 50%;
+    border: none;
+}
+
+form .submitButton {
+    cursor: pointer;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    padding: 1rem;
+    text-align: center;
+}
+
+.formSections {
+    margin-top: 1.5rem;
+}
+
+.submitIcon {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
 }

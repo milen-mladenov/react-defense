@@ -6,74 +6,50 @@ import { ScheduleInput } from "./ScheduleInput"
 import scheduleNames from '../../../utility/scheduleNames'
 
 
-export const CreateSchedule = () => {
+export const CreateSchedule = ({ closeSchedule, day }) => {
     const [bar, setBar] = useState(scheduleNames.bar)
     const [kitchen, setKitchen] = useState(scheduleNames.kitchen)
     const [servers, setServers] = useState(scheduleNames.servers)
     const [managers, setManagers] = useState(scheduleNames.managers)
-    const [schedule, setSchedule] = useState(bar)
+    const [schedule, setSchedule] = useState([])
 
 
     function onSubmit(e) {
         e.preventDefault()
 
-        console.log(bar);
+        console.log(day.format("DD/MM/YY"));
         console.log(schedule);
     }
 
-    function handler() {
-
+    function handler(person) {
+        setSchedule(state => ([...state, person]))
     }
 
     return (
         <div>
-
             <div className={styles.scheduleInputWrapper}>
-                <div className={styles.radioSelect}>
-                    <input onClick={() => setSchedule(bar)}
-                        type="radio"
-                        name="schedule"
-                        id="bar"
-                        value="bar"
-                    />
-                    <label htmlFor="bar">Bar</label>
+                <button className={styles.closeSchedule} onClick={closeSchedule}>X</button>
 
-                    <input onClick={() => setSchedule(kitchen)}
-                        type="radio"
-                        name="schedule"
-                        id="kitchen"
-                        value="kitchen" />
-                    <label htmlFor="kitchen">kitchen</label>
-
-                    <input onClick={() => setSchedule(servers)}
-                        type="radio"
-                        name="schedule"
-                        id="servers"
-                        value="servers" />
-                    <label htmlFor="servers">servers</label>
-
-                    <input onClick={() => setSchedule(managers)}
-                        type="radio"
-                        name="schedule"
-                        id="managers"
-                        value="managers" />
-                    <label htmlFor="managers">managers</label>
-
-                </div>
+                <h2>Schedule for: {day.format("DD/MM/YY")}</h2>
                 <form onSubmit={onSubmit}>
-                    {schedule == bar &&
-                        bar.map(person => <ScheduleInput key={person.name} handler={handler} person={person} />)
-                    }
-                    {schedule == kitchen &&
-                        kitchen.map(person => <ScheduleInput key={person.name} handler={handler} person={person} />)
-                    }
-                    {schedule == servers &&
-                        servers.map(person => <ScheduleInput key={person.name} handler={handler} person={person} />)
-                    }
-                    {schedule == managers &&
-                        managers.map(person => <ScheduleInput key={person.name} handler={handler} person={person} />)
-                    }
-                    <input type="submit" value="submit" />
+                    <div className={styles.formSections}>
+                        <h3>Bar Staff</h3>
+                        {bar.map(person => <ScheduleInput key={person.name} handler={handler} person={person} />)}
+                    </div>
+                    <div className={styles.formSections}>
+                        <h3>Kitchen Staff</h3>
+                        {kitchen.map(person => <ScheduleInput key={person.name} handler={handler} person={person} />)}
+                    </div>
+                    <div className={styles.formSections}>
+                        <h3>Server Staff</h3>
+                        {servers.map(person => <ScheduleInput key={person.name} handler={handler} person={person} />)}
+                    </div>
+                    <div className={styles.formSections}>
+                        <h3>Managers</h3>
+                        {managers.map(person => <ScheduleInput key={person.name} handler={handler} person={person} />)}
+                    </div>
+
+                    <button className={styles.submitButton}>Submit</button>
                 </form>
             </div>
         </div>

@@ -14,8 +14,9 @@ export const ManageSchedule = () => {
     const [calendar, setCalendar] = useState([]);
     const [selectedDay, setSelectedDay] = useState(moment());
     const [showSchedule, setShowSchedule] = useState(false);
+    const [createSchedule, setCreateSchedule] = useState(false)
     const currDate = moment();
-    
+
     useEffect(() => {
         setCalendar(buildCalendar(selectedDay));
     }, [selectedDay]);
@@ -32,18 +33,25 @@ export const ManageSchedule = () => {
         setSelectedDay(selectedDay.add(1, "month").clone());
     }
 
-    function scheduleHandler(day) {
+    function scheduleHandler(day, hasSchedule) {
         const currDay = day.format("D/M/Y")
+
         currDaySchedule = schedule[currDay];
         if (currDaySchedule) {
             setShowSchedule(true)
         } else {
             closeSchedule()
         }
+        if (day.isAfter(currDate) && !hasSchedule) {
+            setCreateSchedule(true)
+        } else {
+            setCreateSchedule(false)
+        }
     }
 
     function closeSchedule() {
         setShowSchedule(false)
+        setCreateSchedule(false)
     }
 
     return (
@@ -72,8 +80,8 @@ export const ManageSchedule = () => {
                     {calendar.map(week => <CreateWeek week={week} schedule={schedule} scheduleHandler={scheduleHandler} select={setSelectedDay} dayHandler={dayHandler} />)}
                 </tbody>
             </table>
-            <CreateSchedule />
-            {showSchedule && <DaySchedule schedule={currDaySchedule} day={selectedDay} closeSchedule={closeSchedule}/>}
+            {createSchedule && <CreateSchedule day={selectedDay} closeSchedule={closeSchedule} />}
+            {showSchedule && <DaySchedule schedule={currDaySchedule} day={selectedDay} closeSchedule={closeSchedule} />}
         </div>
     )
 }

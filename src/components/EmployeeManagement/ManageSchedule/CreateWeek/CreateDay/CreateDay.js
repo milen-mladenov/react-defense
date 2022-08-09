@@ -38,7 +38,7 @@ export const CreateDay = ({ day, schedule, dayHandler, scheduleHandler }) => {
 
     function select() {
         dayHandler(day)
-        scheduleHandler(day);
+        scheduleHandler(day, hasSchedule);
     }
 
     return (
