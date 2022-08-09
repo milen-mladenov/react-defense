@@ -1,6 +1,7 @@
 import { ItemManagement } from '../ItemManagement/ItemManagement'
 import styles from '../InventoryScreen.module.css'
 import { useState } from 'react'
+import { getObjectId, updateInventory } from '../../../services/InventoryApi'
 let total
 
 export const ManageInventory = ({ items }) => {
@@ -34,12 +35,25 @@ export const ManageInventory = ({ items }) => {
 
     function updateSection(e) {
         e.preventDefault()
+        items.forEach(element => {
+            if (currentSelectedInput.hasOwnProperty(element.ProductID)) {
+                element.SystemQuantity = Number(currentSelectedInput[element.ProductID])
+                let id = element.objectId
+
+                updateInventory(id, element)
+            }
+        });
         console.log(currentSelectedInput);
         console.log(items);
     }
 
+    function test() {
+        getObjectId()
+    }
+
     return (
         <div>
+            <button onClick={test}>Test Oid</button>
             <form onSubmit={updateSection} onChange={handleChange}>
                 {items.map(item => <ItemManagement key={item.ProductID} item={item} handleDiff={handleDiff} updateInput={updateInput} calc={handleChange} />)}
                 <input type="submit" value="submit_item" id="submit_new_items" className={styles.submit_btn} />

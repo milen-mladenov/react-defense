@@ -36,10 +36,7 @@ export const ItemManagement = ({ item, handleDiff, calc, updateInput }) => {
             ...state,
             [name]: currentQuant
         }))
-        console.log(input);
-        console.log(difference);
-        console.log(differencePerc);
-        console.log(differenceAmount);
+
     }
 
     return (
