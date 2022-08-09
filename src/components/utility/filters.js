@@ -1,14 +1,14 @@
 const filterButtons = {
     all: {
-        name: "Всички",
+        name: "All",
         location: ""
     },
     kitchen: {
-        name: "Кухня",
+        name: "Kitchen",
         location: ""
     },
     bar: {
-        name: "Бар",
+        name: "Bar",
         location: ""
     },
     other: {

@@ -1,7 +1,12 @@
 import styles from '../ItemButtons.module.css'
 
-export const Item = ({items}) => {
+export const Item = ({ item, newItemHandler }) => {
+
+    function returnItem() {
+        newItemHandler(item)
+    }
+
     return (
-        <li><button className={styles.item_button}>{items.name}</button></li>
+        <li><button onClick={returnItem} className={styles.item_button}>{item.ProductName}</button></li>
     )
 }

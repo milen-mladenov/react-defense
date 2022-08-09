@@ -4,6 +4,7 @@ import { MainFilters } from "./MainFilters/MainFilters"
 import { RightOrderSection } from "./RightOrderSection/RightOrderSection"
 import styles from './OrderingScreen.module.css'
 export const OrderingScreen = () => {
+    const [filter, setFilter] = useState("All")
     const [currTables, setCurrTables] = useState
         ([
             [23, {}, { id: "text" + Math.random(), server: "server 1", time: 98, amount: 42.70, note: "nothing", guests: 5 }],
@@ -32,7 +33,10 @@ export const OrderingScreen = () => {
             [43, {}, { id: "text" + Math.random(), server: "server 1", time: 158, amount: 72.70, note: "nothing", guests: 4 }],
         ]);
     const [table, setTable] = useState(currTables[5])
-
+    
+    function handleItemFilters(department){
+        setFilter(department)
+    }
     function newTableHandler(t) {
         setCurrTables(state => ([
             ...state,
@@ -46,9 +50,9 @@ export const OrderingScreen = () => {
 
     return (
         <>
-            <MainFilters />
+            <MainFilters handler={handleItemFilters} />
             <div className={styles.orderingScreen}>
-                <LeftOrderSection table={table} />
+                <LeftOrderSection table={table} filter={filter} />
                 <RightOrderSection table={table} currTables={currTables} newTable={newTableHandler} selectTableHandler={selectTableHandler} />
             </div>
         </>

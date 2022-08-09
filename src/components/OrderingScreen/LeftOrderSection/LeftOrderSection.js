@@ -5,19 +5,47 @@ import { ItemButtons } from './ItemButtons/ItemButtons';
 import { ItemKeypad } from './ItemKeypad/ItemKeypad';
 import { TableInformation } from './TableInformation/TableInformation';
 import { TableOrder } from './TableOrder/TableOrder';
+import { getAllInventory, getAllBarItems, getAllKitchenItems } from '../../../services/InventoryApi'
 
-export const LeftOrderSection = ({ table }) => {
+
+export const LeftOrderSection = ({ table, filter }) => {
     const [keypad, setKeypad] = useState(false)
     const [tableInfo, setTableInfo] = useState(table[2])
     const [tableOrder, setTableOrder] = useState(table[1])
     const [hasNewOrder, setHasNewOrder] = useState(false)
-    const [orderItem, setOrderItem] = useState("")
+    const [orderItem, setOrderItem] = useState({})
+    const [getItems, setGetItems] = useState([]);
+
+    useEffect(() => {
+        if (filter == "All") {
+            getFullInventory()
+        } else if (filter == "Kitchen") {
+            getFullKitchenInventory()
+        } else if (filter == "Bar") {
+            getFullBarInventory()
+        }
+
+    }, [filter])
+
+    async function getFullInventory() {
+        const res = await getAllInventory()
+        setGetItems(res)
+    }
+    async function getFullKitchenInventory() {
+        const kitchenRes = await getAllKitchenItems()
+        setGetItems(kitchenRes)
+    }
+    async function getFullBarInventory() {
+        const barRes = await getAllBarItems()
+        setGetItems(barRes)
+    }
 
     const tableNumber = table[0];
 
     function newItemHandler(e) {
-        let item = e.target.value
-        setOrderItem(item)
+
+        setOrderItem(e)
+        console.log(orderItem);
     }
 
     useEffect(() => {
@@ -41,10 +69,10 @@ export const LeftOrderSection = ({ table }) => {
                 >Keypad</button>
             </div>
             <div className={styles.ordering_section}>
-                {!keypad && <ItemButtons newItemHandler={newItemHandler} />}
+                {!keypad && <ItemButtons newItemHandler={newItemHandler} items={getItems} />}
                 {keypad && <ItemKeypad newItemHandler={newItemHandler} />}
             </div>
-                <TableInformation tableNumber={tableNumber} amount={table[2].amount} />
+            <TableInformation tableNumber={tableNumber} amount={table[2].amount} />
             <div className={styles.orderdered_items}>
                 <TableOrder tableOrder={tableOrder} orderItem={orderItem} />
             </div>

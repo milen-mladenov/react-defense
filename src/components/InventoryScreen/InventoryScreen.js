@@ -11,12 +11,12 @@ import { getAllInventory, getAllBarItems, getAllKitchenItems } from '../../servi
 
 export const InventoryScreen = () => {
     const [action, setAction] = useState("");
-    const [getItems, setGetItems] = useState([])
+    const [getItems, setGetItems] = useState([]);
+
 
     async function getFullInventory() {
         const res = await getAllInventory()
         setGetItems(res)
-
     }
 
     async function getFullBarInventory() {
@@ -28,6 +28,7 @@ export const InventoryScreen = () => {
         const kitchenRes = await getAllKitchenItems()
         setGetItems(kitchenRes)
     }
+
 
 
     function handleAction(act) {
@@ -44,4 +45,5 @@ export const InventoryScreen = () => {
             {action == "inventory" && <ManageInventory items={getItems} />}
         </section>
     )
+
 }

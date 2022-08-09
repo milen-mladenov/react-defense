@@ -1,7 +1,12 @@
 import styles from '../MainFilters.module.css'
 
-export const Button = ({info}) => {
+export const Button = ({ info, handler }) => {
+
+    function getFilter() {
+        handler(info.name)
+    }
+
     return (
-        <button className={styles.categorie_button} id="all_categories_button">{info.name}</button>
+        <button onClick={getFilter} className={styles.categorie_button} id="all_categories_button">{info.name}</button>
     )
 }
