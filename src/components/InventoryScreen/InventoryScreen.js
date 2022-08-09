@@ -16,24 +16,24 @@ export const InventoryScreen = () => {
     async function getFullInventory() {
         const res = await getAllInventory()
         setGetItems(res)
-        // res.map(item => console.log(item));
+
     }
 
     async function getFullBarInventory() {
         const barRes = await getAllBarItems()
-        barRes.map(item => console.log(item));
         setGetItems(barRes)
     }
 
     async function getFullKitchenInventory() {
         const kitchenRes = await getAllKitchenItems()
-        kitchenRes.map(item => console.log(item));
         setGetItems(kitchenRes)
     }
+
 
     function handleAction(act) {
         setAction(act)
     }
+
     return (
         <section>
             <Forms handleAction={handleAction} />

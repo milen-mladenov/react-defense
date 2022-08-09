@@ -1,11 +1,11 @@
-import barItems from '../../utility/barItems.json'
 import { ItemManagement } from '../ItemManagement/ItemManagement'
 import styles from '../InventoryScreen.module.css'
 import { useState } from 'react'
 let total
 
 export const ManageInventory = ({ items }) => {
-    const [calcDiff, setCalcDiff] = useState(items);
+    const [currentSelectedInput, setCurrentSelectedInput] = useState({})
+    const [calcDiff, setCalcDiff] = useState({});
 
     total = handleChange()
 
@@ -13,6 +13,14 @@ export const ManageInventory = ({ items }) => {
         setCalcDiff(state => ({
             ...state,
             [name]: diff
+        }))
+    }
+
+    function updateInput(name, value) {
+
+        setCurrentSelectedInput(state => ({
+            ...state,
+            [name]: value
         }))
     }
 
@@ -24,10 +32,16 @@ export const ManageInventory = ({ items }) => {
         return totalV
     }
 
+    function updateSection(e) {
+        e.preventDefault()
+        console.log(currentSelectedInput);
+        console.log(items);
+    }
+
     return (
         <div>
-            <form onChange={handleChange}>
-                {items.map(item => <ItemManagement key={item.ProductID} item={item} handleDiff={handleDiff} calc={handleChange} />)}
+            <form onSubmit={updateSection} onChange={handleChange}>
+                {items.map(item => <ItemManagement key={item.ProductID} item={item} handleDiff={handleDiff} updateInput={updateInput} calc={handleChange} />)}
                 <input type="submit" value="submit_item" id="submit_new_items" className={styles.submit_btn} />
             </form>
             <h2>Total: {total.toFixed(2)}</h2>

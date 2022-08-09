@@ -2,11 +2,12 @@ import { useEffect, useState } from "react"
 import styles from '../InventoryScreen.module.css'
 
 let color = "good"
-export const ItemManagement = ({ item, handleDiff, calc }) => {
+export const ItemManagement = ({ item, handleDiff, calc, updateInput }) => {
     const [input, setInput] = useState(item)
+    const [currentQuant, setCurrentQuant] = useState(0)
     const [color, setColor] = useState("good")
 
-    const difference = (Number(input.CurrentQuant || 0) - Number(item.SystemQuantity));
+    const difference = currentQuant - Number(item.SystemQuantity);
     const differencePerc = difference / Number(item.SystemQuantity) * 100;
     const differenceAmount = difference * Number(item.RetailPrice);
 
@@ -28,13 +29,14 @@ export const ItemManagement = ({ item, handleDiff, calc }) => {
 
     function handleInput(e) {
         let value = e.target.value;
-        let name = e.target.name;
-
-        setInput(old => ({
-            ...old,
-            [name]: value
+        let name = input.ProductID;
+        updateInput(name, value)
+        setCurrentQuant(value)
+        setInput(state => ({
+            ...state,
+            [name]: currentQuant
         }))
-        console.log(`${name} + ${value}`);
+        console.log(input);
         console.log(difference);
         console.log(differencePerc);
         console.log(differenceAmount);
@@ -47,7 +49,7 @@ export const ItemManagement = ({ item, handleDiff, calc }) => {
                 <p>{input.ProductCode} </p>
             </label>
             <label htmlFor="product">
-                <p>product</p>
+                <p>Product</p>
                 <p>{input.ProductName}</p>
             </label>
             <label htmlFor="id">
@@ -55,31 +57,31 @@ export const ItemManagement = ({ item, handleDiff, calc }) => {
                 <p>{input.ProductID}</p>
             </label>
             <label htmlFor="retailPrice">
-                <p>retail price</p>
+                <p>Retail price</p>
                 <p>{input.RetailPrice}</p>
             </label>
             <label htmlFor="sellPrice">
-                <p>sell price</p>
+                <p>Sell price</p>
                 <p>{input.SellPrice}</p>
             </label>
             <label htmlFor="systemQuant">
-                <p>system quant</p>
+                <p>System quant</p>
                 <p>{input.SystemQuantity}</p>
             </label>
             <label htmlFor="currentQuant">
-                <p>system quant</p>
-                <input type="text" name="currentQuant" placeholder="currentQuant" onBlur={calc} onChange={handleInput} value={input.CurrentQuant} />
+                <p>Current quant</p>
+                <input type="text" name="currentQuant" placeholder="currentQuant" onBlur={calc} onChange={handleInput} value={currentQuant} />
             </label>
             <label htmlFor="difference">
-                <p>difference</p>
+                <p>Difference</p>
                 <p className={styles[color]}>{difference}</p>
             </label>
             <label htmlFor="difference">
-                <p>difference amount</p>
+                <p>Difference amount</p>
                 <p className={styles[color]}>{differenceAmount.toFixed(2)}</p>
             </label>
             <label htmlFor="difference">
-                <p>difference perc</p>
+                <p>Difference perc</p>
                 <p className={styles[color]}>{differencePerc.toFixed(2)} %</p>
             </label>
         </div>
