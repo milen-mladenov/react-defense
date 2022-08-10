@@ -101,7 +101,6 @@ export async function updateInventory(itemId, element) {
     const Inventory = Parse.Object.extend('Inventory');
     const query = new Parse.Query(Inventory);
     try {
-
         const object = await query.get(itemId);
         object.set('Department', element.Department);
         object.set('ProductName', element.ProductName);
@@ -110,7 +109,6 @@ export async function updateInventory(itemId, element) {
         object.set('SystemQuantity', element.SystemQuantity);
         object.set('ProductCode', element.ProductCode);
         object.set('ProductID', element.ProductID);
-        object.set('Alcohol', element.Alcohol);
         try {
             const response = await object.save();
             console.log('Inventory updated', response);
@@ -119,6 +117,26 @@ export async function updateInventory(itemId, element) {
         }
     } catch (error) {
         console.error('Error while retrieving object Inventory', error);
+    }
+
+}
+
+export async function createNewItems(item) {
+    
+    const myNewObject = new Parse.Object('Inventory');
+    myNewObject.set('Department', item.Department);
+    myNewObject.set('ProductName', item.ProductName);
+    myNewObject.set('RetailPrice', item.RetailPrice);
+    myNewObject.set('SellPrice', item.SellPrice);
+    myNewObject.set('SystemQuantity', item.SystemQuantity);
+    myNewObject.set('ProductCode', item.ProductCode);
+    myNewObject.set('ProductID', item.ProductID);
+    try {
+        const result = await myNewObject.save();
+        // Access the Parse Object attributes using the .GET method
+        console.log('Inventory created', result);
+    } catch (error) {
+        console.error('Error while creating Inventory: ', error);
     }
 
 }
