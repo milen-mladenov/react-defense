@@ -33,7 +33,7 @@ export const CreateNewItem = () => {
     }
     return (
         <div>
-            <button onClick={() => console.log(currentInputOrder)}>test</button>
+
             <form onSubmit={onSubmit} className={styles.new_items}>
 
                 <div className={styles.item}>
@@ -72,6 +72,7 @@ export const CreateNewItem = () => {
                 <input type="submit" value="Add" className={styles.submit_btn} />
             </form>
             <h2>Currently creating:</h2>
+            <button onClick={create}>Create Items</button>
             <table className={styles.orderedItems}>
                 <thead>
                     <tr>
@@ -88,7 +89,7 @@ export const CreateNewItem = () => {
                     {currentInputOrder.map(item => <TableRow key={item.ProductID} item={item} />)}
                 </tbody>
             </table>
-            <button onClick={create}>Create Items</button>
+
         </div>
 
     )

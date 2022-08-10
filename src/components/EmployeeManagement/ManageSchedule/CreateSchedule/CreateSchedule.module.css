@@ -1,12 +1,45 @@
 .scheduleInputWrapper {
     position: absolute;
-    top: 25%;
-    left: 40%;
-    width: 450px;
+    display: grid;
+    grid-template-areas:
+        "date date"
+        "bar kitchen"
+        "servers managers";
+    width: 60%;
+    height: 55%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
     padding: 2.5rem 2.5rem 5rem;
     background-color: var(--base-light-gray);
     box-shadow: 0 2px 6px 0;
     border-radius: 4px;
+}
+
+.barForm {
+    grid-area: bar;
+    height: 8rem;
+}
+
+.kitchenForm {
+    grid-area: kitchen;
+    height: 8rem;
+}
+
+.serversForm {
+    grid-area: servers;
+    height: 8rem;
+}
+
+.managersForm {
+    grid-area: managers;
+    height: 8rem;
+}
+
+.currentDate {
+    grid-area: date;
 }
 
 .employeeField {
@@ -41,14 +74,15 @@
 
 form .submitButton {
     cursor: pointer;
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
+    position: relative;
+    bottom: -0.5rem;
+    right: -6rem;
     padding: 1rem;
     text-align: center;
 }
 
 .formSections {
+    position: relative;
     margin-top: 1.5rem;
 }
 
