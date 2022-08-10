@@ -1,19 +1,21 @@
-import styles from './Header.module.css'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { getUserData } from '../../services/utility'
+import styles from './Header.module.css'
+
 import openMenu from '../utility/svg/openMenu.svg'
 import closeMenu from '../utility/svg/closeMenu.svg'
-import { useState } from 'react'
-import { clearUserData, getUserData } from '../../services/utility'
 
-export const Header = ({logoutHandler}) => {
+export const Header = ({ logoutHandler }) => {
     const [dropdown, setDropdown] = useState(false);
-    const currUser = getUserData()
-
+    let currUser = getUserData()
+    let access = currUser?.userAccess
     function dropdownState() {
         setDropdown(!dropdown)
     }
 
-    function logout(){
+    function logout() {
+        currUser = ""
         logoutHandler()
     }
 
@@ -33,7 +35,7 @@ export const Header = ({logoutHandler}) => {
                 {dropdown ? <div className={styles.dropdownSection}>
                     <img onClick={dropdownState} src={closeMenu} />
                     <ul className={styles.menuLinks}>
-                        <Link to="/inventory"> <li>Inventory</li></Link>
+                        {access == "full" && <Link to="/inventory"> <li>Inventory</li></Link>}
                         <Link to="/ordering"> <li>Main Screen</li></Link>
                         <Link to="/emp-management"> <li>Management</li></Link>
                     </ul>

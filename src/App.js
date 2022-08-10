@@ -8,7 +8,7 @@ import { Login } from './components/Login/Login';
 import { OrderingScreen } from './components/OrderingScreen/OrderingScreen'
 import { EmployeeManagement } from './components/EmployeeManagement/EmployeeManagement';
 import { ManageAccounts } from './components/EmployeeManagement/ManageAccounts/ManageAccounts'
-import { setUserData,clearUserData } from './services/utility';
+import { setUserData, clearUserData } from './services/utility';
 
 
 function App() {
@@ -17,17 +17,17 @@ function App() {
     userAccess: ""
   })
   const [state, setState] = useState(false)
-    
+
 
 
   function loginHandler(user, access) {
-      setState(true)
-      handleUserStatus(user, access)
+    setState(true)
+    handleUserStatus(user, access)
   }
   function logoutHandler() {
-      setState(false)
-      console.log("logout");
-      clearUserData()
+    setState(false)
+    console.log("logout");
+    clearUserData()
   }
 
   function handleUserStatus(user, access) {

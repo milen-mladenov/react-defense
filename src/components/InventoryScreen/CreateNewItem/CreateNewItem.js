@@ -19,6 +19,7 @@ export const CreateNewItem = () => {
     function handleLastRow() {
         setLastRow(true)
     }
+    
     function addNewRow() {
 
         let inputLength = currentInputOrder.length
