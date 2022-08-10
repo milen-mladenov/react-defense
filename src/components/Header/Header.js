@@ -3,24 +3,31 @@ import { Link } from 'react-router-dom'
 import openMenu from '../utility/svg/openMenu.svg'
 import closeMenu from '../utility/svg/closeMenu.svg'
 import { useState } from 'react'
+import { clearUserData, getUserData } from '../../services/utility'
 
-export const Header = ({ user }) => {
+export const Header = ({logoutHandler}) => {
     const [dropdown, setDropdown] = useState(false);
+    const currUser = getUserData()
 
     function dropdownState() {
-        
         setDropdown(!dropdown)
     }
+
+    function logout(){
+        logoutHandler()
+    }
+
     return (
         <header>
             <div>
                 <h2>Текущ потребител:</h2>
-                <h2 id="current_logged_user">{user.userName}</h2>
+                {currUser ? <h2 id="current_logged_user">{currUser.userName}</h2> : ""}
+
             </div>
             <div>
 
                 <div>
-                    <Link to="/"><button id="user_login_button">Смяна на потребителя</button></Link>
+                    <Link to="/"><button onClick={logout} id="user_login_button">Смяна на потребителя</button></Link>
                 </div>
 
                 {dropdown ? <div className={styles.dropdownSection}>
