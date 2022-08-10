@@ -2,7 +2,7 @@ import { useState } from 'react'
 import styles from '../InventoryScreen.module.css'
 
 
-export const ItemCreation = ({ item, handler, handleLastRow }) => {
+export const ItemCreation = ({ item, handler }) => {
     const [input, setInput] = useState(item);
 
     function handleInput(e) {
@@ -23,7 +23,6 @@ export const ItemCreation = ({ item, handler, handleLastRow }) => {
             input.SellPrice !== "" &&
             input.RetailPrice !== "" &&
             input.SystemQuant !== "") {
-            handleLastRow()
             handler(input)
         }
     }
