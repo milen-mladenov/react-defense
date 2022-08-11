@@ -1,10 +1,35 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import styles from "./ManageAccounts.module.css"
-import { createEmployee } from '../../../services/EmployeeApi'
+import { createEmployee, getAllEployees } from '../../../services/EmployeeApi'
+import { ListItem } from "./ListItem"
 
 export const ManageAccounts = () => {
     const [passwordType, setPassowrdType] = useState("password")
+    const [employees, setEmployees] = useState({})
+    const [form, setForm] = useState(false)
 
+
+    async function getEmployees() {
+
+        let [barPersonel, kitchenPersonel, serverPersonel, managerPersonel] =
+            await Promise.all([
+                getAllEployees("BarEmployees"),
+                getAllEployees("KitchenEmployees"),
+                getAllEployees("ServersEmployees"),
+                getAllEployees("ManagersEmployees")
+            ])
+
+        setEmployees({
+            "barEmployees": barPersonel,
+            "kitchenEmployees": kitchenPersonel,
+            "serverEmployees": serverPersonel,
+            "managers": managerPersonel
+        })
+
+    }
+    useEffect(() => {
+        getEmployees()
+    }, [])
     function handlePassType(e) {
         e.preventDefault()
         if (passwordType !== "password") {
@@ -58,12 +83,41 @@ export const ManageAccounts = () => {
         createEmployee(department, employee)
 
     }
-
-
+    function closeForm() {
+        setForm(!form)
+    }
     return (
         <div>
             <h1>Accounts</h1>
-            <div className={styles.employee_form}>
+            {!form && <button onClick={() => setForm(!form)}> Create New Employee</button>}
+            <section className={styles.displayEmployees}>
+                <div className={`${styles.employeeSection} ${styles.bar}`}>
+                    <h2>Bar Employees</h2>
+                    <ol className={styles.employeeList}>
+                        {employees.barEmployees?.map(emp => <ListItem key={emp.FirstName + " " + emp.LastName} employee={emp} />)}
+                    </ol>
+                </div>
+                <div className={`${styles.employeeSection} ${styles.kitchen}`}>
+                    <h2>Kitchen Employees</h2>
+                    <ol className={styles.employeeList}>
+                        {employees.kitchenEmployees?.map(emp => <ListItem key={emp.FirstName + " " + emp.LastName} employee={emp} />)}
+                    </ol>
+                </div>
+                <div className={`${styles.employeeSection} ${styles.servers}`}>
+                    <h2>Servers Employees</h2>
+                    <ol className={styles.employeeList}>
+                        {employees.serverEmployees?.map(emp => <ListItem key={emp.FirstName + " " + emp.LastName} employee={emp} />)}
+                    </ol>
+                </div>
+                <div className={`${styles.employeeSection} ${styles.managers}`}>
+                    <h2>Managers</h2>
+                    <ol className={styles.employeeList}>
+                        {employees.managers?.map(emp => <ListItem key={emp.FirstName + " " + emp.LastName} employee={emp} />)}
+                    </ol>
+                </div>
+            </section>
+            {form && <div className={styles.employee_form}>
+                <button className={styles.closeForm} onClick={closeForm}>X</button>
                 <form onSubmit={createAccount} className={styles.create_employee}>
                     <div>
                         <label htmlFor="department"><span className={styles.required}>*</span> Department </label>
@@ -123,7 +177,7 @@ export const ManageAccounts = () => {
                     </div>
                     <button className={styles.createAccountButton}>Create</button>
                 </form>
-            </div>
+            </div>}
         </div>
     )
 }

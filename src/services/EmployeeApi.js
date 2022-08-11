@@ -29,3 +29,33 @@ export async function createEmployee(department, employee) {
 
     return result
 }
+
+
+export async function getAllEployees(department) {
+    let employees = []
+    const Employees = Parse.Object.extend(department);
+    const query = new Parse.Query(Employees);
+
+    try {
+        const results = await query.find();
+        for (const object of results) {
+
+            const employee = {
+                "FirstName": object.get('FirstName'),
+                "LastName": object.get('LastName'),
+                "Email": object.get('Email'),
+                "PhoneNumber": object.get('PhoneNumber'),
+                "Password": object.get('Password'),
+                "Access": object.get('Access'),
+                "Position": object.get('Position'),
+                "Note": object.get('Note'),
+            }
+
+            employees.push(employee)
+        }
+    } catch (error) {
+        console.error('Error while fetching BarEmployees', error);
+    }
+
+    return employees
+}

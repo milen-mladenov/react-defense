@@ -1,9 +1,11 @@
-
 .employee_form {
+    position: absolute;
+    top: 10%;
+    left: 35%;
     background-color: var(--base-dark-gray);
     margin: 15% auto;
     width: 35rem;
-    padding: 1rem;
+    padding: 3rem;
     border-radius: 10px;
     box-shadow: 0 0 4px 0;
 }
@@ -18,6 +20,7 @@
 .create_employee div {
     width: 40%;
 }
+
 .create_employee div:last-child {
     width: 100%;
 }
@@ -27,4 +30,63 @@
     border: none;
     border-radius: 5px;
     box-shadow: 0 0 3px 0;
+}
+
+.displayEmployees {
+    width: 70%;
+    margin: auto;
+    padding: 2rem;
+    list-style: decimal;
+    display: grid;
+    grid-template-areas:
+        "bar kitchen"
+        "servers managers"
+    ;
+    gap: 1rem;
+}
+
+.bar {
+    grid-area: bar;
+}
+
+.kitchen {
+    grid-area: kitchen;
+
+}
+
+.servers {
+    grid-area: servers;
+
+}
+
+.managers {
+    grid-area: managers;
+
+}
+
+.employeeSection {
+
+    background-color: var(--base-light-gray);
+}
+
+.employeeList {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.singleEmployee {
+    list-style: circle;
+    margin: 0.75rem 0;
+    text-align: left;
+}
+
+.closeForm {
+    position: absolute;
+    padding: 0.5rem;
+    width: 40px;
+    height: 40px;
+    top: -15px;
+    right: -15px;
+    border-radius: 50%;
+    border: none;
 }
