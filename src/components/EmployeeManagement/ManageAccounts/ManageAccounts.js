@@ -1,6 +1,6 @@
 import { useState } from "react"
 import styles from "./ManageAccounts.module.css"
-
+import { createEmployee } from '../../../services/EmployeeApi'
 
 export const ManageAccounts = () => {
     const [passwordType, setPassowrdType] = useState("password")
@@ -23,9 +23,9 @@ export const ManageAccounts = () => {
             "Access": data.get("access"),
             "FirstName": data.get("fName"),
             "LastName": data.get("lName"),
-            "Password": data.get("password"),
+            "Password": Number(data.get("password")),
             "Email": data.get("email"),
-            "PhoneNumber": data.get("phone"),
+            "PhoneNumber": Number(data.get("phone")),
             "Note": data.get("note")
         }
 
@@ -40,21 +40,23 @@ export const ManageAccounts = () => {
             return
         }
 
-        if (employee.Password !== data.get("rePassword")) {
+        if (employee.Password !== Number(data.get("rePassword"))) {
             alert("Passwords don't match!")
             return
         }
 
         if (department == "servers") {
-            console.log("servers");
+            department = "ServersEmployees"
         } else if (department == "bar") {
-            console.log("bar");
+            department = "BarEmployees"
         } else if (department == "kitchen") {
-            console.log("kitchen");
+            department = "KitchenEmployees"
         } else if (department == "managers") {
-            console.log("managers");
+            department = "ManagersEmployees"
         }
-        console.log(employee)
+
+        createEmployee(department, employee)
+
     }
 
 
