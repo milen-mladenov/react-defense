@@ -2,34 +2,12 @@ import { useEffect, useState } from "react"
 import styles from "./ManageAccounts.module.css"
 import { createEmployee, getAllEployees } from '../../../services/EmployeeApi'
 import { ListItem } from "./ListItem"
-
+import { useEmployees } from '../../utility/getEmployees'
 export const ManageAccounts = () => {
     const [passwordType, setPassowrdType] = useState("password")
-    const [employees, setEmployees] = useState({})
     const [form, setForm] = useState(false)
+    const employees = useEmployees()
 
-
-    async function getEmployees() {
-
-        let [barPersonel, kitchenPersonel, serverPersonel, managerPersonel] =
-            await Promise.all([
-                getAllEployees("BarEmployees"),
-                getAllEployees("KitchenEmployees"),
-                getAllEployees("ServersEmployees"),
-                getAllEployees("ManagersEmployees")
-            ])
-
-        setEmployees({
-            "barEmployees": barPersonel,
-            "kitchenEmployees": kitchenPersonel,
-            "serverEmployees": serverPersonel,
-            "managers": managerPersonel
-        })
-
-    }
-    useEffect(() => {
-        getEmployees()
-    }, [])
     function handlePassType(e) {
         e.preventDefault()
         if (passwordType !== "password") {
@@ -86,6 +64,7 @@ export const ManageAccounts = () => {
     function closeForm() {
         setForm(!form)
     }
+
     return (
         <div>
             <h1>Accounts</h1>

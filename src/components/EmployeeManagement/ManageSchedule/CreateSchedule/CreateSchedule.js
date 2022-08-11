@@ -1,23 +1,22 @@
-import { logDOM } from "@testing-library/react"
-import { isValidInputTimeValue } from "@testing-library/user-event/dist/utils"
 import { useEffect, useState } from "react"
+import { useEmployees } from "../../../utility/getEmployees"
 import styles from './CreateSchedule.module.css'
 import { ScheduleInput } from "./ScheduleInput"
-import scheduleNames from '../../../utility/scheduleNames'
 
 
-export const CreateSchedule = ({ closeSchedule, day }) => {
-    const [bar, setBar] = useState(scheduleNames.bar)
-    const [kitchen, setKitchen] = useState(scheduleNames.kitchen)
-    const [servers, setServers] = useState(scheduleNames.servers)
-    const [managers, setManagers] = useState(scheduleNames.managers)
+export const CreateSchedule = ({ closeSchedule, day, }) => {
+    const [bar, setBar] = useState([{}])
+    const [kitchen, setKitchen] = useState([{}])
+    const [servers, setServers] = useState([{}])
+    const [managers, setManagers] = useState([{}])
     const [schedule, setSchedule] = useState([])
-
+    const employees = useEmployees()
+    console.log(employees);
 
     function submitBarSchedule(e) {
         e.preventDefault()
-
-        console.log(day.format("DD/MM/YY"));
+        let selectedDay = day.format("DD/MM/YY")
+        console.log(selectedDay);
         console.log(schedule);
     }
     function submitKitchenSchedule(e) {
@@ -49,13 +48,13 @@ export const CreateSchedule = ({ closeSchedule, day }) => {
             <div className={styles.scheduleInputWrapper}>
                 <button className={styles.closeSchedule} onClick={closeSchedule}>X</button>
                 <div className={styles.currentDate}>
-                <h2>Schedule for: {day.format("DD/MM/YY")}</h2>
+                    <h2>Schedule for: {day.format("DD/MM/YY")}</h2>
                 </div>
                 <div className={styles.barForm}>
                     <form onSubmit={submitBarSchedule}>
                         <div className={styles.formSections}>
                             <h3>Bar Staff</h3>
-                            {bar.map(person => <ScheduleInput key={person.name} handler={handler} person={person} />)}
+                            {employees.barEmployees?.map(person => <ScheduleInput key={person.name} handler={handler} person={person} />)}
                         </div>
                         <button className={styles.submitButton}>Submit Bar</button>
                     </form>
@@ -64,7 +63,7 @@ export const CreateSchedule = ({ closeSchedule, day }) => {
                     <form onSubmit={submitKitchenSchedule}>
                         <div className={styles.formSections}>
                             <h3>Kitchen Staff</h3>
-                            {kitchen.map(person => <ScheduleInput key={person.name} handler={handler} person={person} />)}
+                            {employees.kitchenEmployees?.map(person => <ScheduleInput key={person.name} handler={handler} person={person} />)}
                         </div>
                         <button className={styles.submitButton}>Submit Kitchen</button>
                     </form>
@@ -73,7 +72,7 @@ export const CreateSchedule = ({ closeSchedule, day }) => {
                     <form onSubmit={submitServerSchedule}>
                         <div className={styles.formSections}>
                             <h3>Server Staff</h3>
-                            {servers.map(person => <ScheduleInput key={person.name} handler={handler} person={person} />)}
+                            {employees.serverEmployees?.map(person => <ScheduleInput key={person.name} handler={handler} person={person} />)}
                         </div>
                         <button className={styles.submitButton}>Submit Servers</button>
                     </form>
@@ -82,7 +81,7 @@ export const CreateSchedule = ({ closeSchedule, day }) => {
                     <form onSubmit={submitManagerSchedule}>
                         <div className={styles.formSections}>
                             <h3>Managers</h3>
-                            {managers.map(person => <ScheduleInput key={person.name} handler={handler} person={person} />)}
+                            {employees.managers?.map(person => <ScheduleInput key={person.name} handler={handler} person={person} />)}
                         </div>
                         <button className={styles.submitButton}>Submit Managers</button>
                     </form>

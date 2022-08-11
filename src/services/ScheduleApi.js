@@ -6,3 +6,4 @@ const applicationId = 'ZzsEoelt01CRLQreVhYhwKuv5nFTZq8ml4fgmd0I';
 
 Parse.initialize(applicationId, javaScriptKey);
 Parse.serverURL = hostUrl;
+

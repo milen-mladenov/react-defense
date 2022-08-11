@@ -31,7 +31,7 @@ export const ScheduleInput = ({ person, handler }) => {
                 name="name"
                 placeholder="employee"
                 onChange={inputHandler}
-                value={employee.name} />
+                value={employee.FirstName} />
             <div className={styles.employeeHours}>
                 <input
                     type="text"

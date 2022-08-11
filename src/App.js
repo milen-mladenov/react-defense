@@ -12,13 +12,12 @@ import { setUserData, clearUserData } from './services/utility';
 
 
 function App() {
+
   const [loginStatus, setLoginStatus] = useState({
     userName: "",
     userAccess: ""
   })
   const [state, setState] = useState(false)
-
-
 
   function loginHandler(user, access) {
     setState(true)
@@ -26,7 +25,6 @@ function App() {
   }
   function logoutHandler() {
     setState(false)
-    console.log("logout");
     clearUserData()
   }
 
@@ -47,7 +45,6 @@ function App() {
         <Route path="/ordering" element={<OrderingScreen />} />
         <Route path="/inventory" element={<InventoryScreen />} />
         <Route path='/emp-management' element={<EmployeeManagement />} />
-        <Route path="/emp-management" element={<ManageAccounts />} />
       </Routes>
 
     </div>

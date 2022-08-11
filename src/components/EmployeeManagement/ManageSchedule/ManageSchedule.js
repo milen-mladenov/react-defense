@@ -77,7 +77,7 @@ export const ManageSchedule = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {calendar.map(week => <CreateWeek week={week} schedule={schedule} scheduleHandler={scheduleHandler} select={setSelectedDay} dayHandler={dayHandler} />)}
+                    {calendar.map(week => <CreateWeek key={week[0].format("DD/MM/YY")} week={week} schedule={schedule} scheduleHandler={scheduleHandler} select={setSelectedDay} dayHandler={dayHandler} />)}
                 </tbody>
             </table>
             {createSchedule && <CreateSchedule day={selectedDay} closeSchedule={closeSchedule} />}
