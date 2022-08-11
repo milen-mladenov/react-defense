@@ -35,9 +35,10 @@ export const ManageSchedule = () => {
     }
 
     function scheduleHandler(day, hasSchedule) {
-        const currDay = day.format("D/M/Y")
+        const currDay = day.format("DD/MM/YY")
 
         currDaySchedule = schedule[currDay];
+
         if (currDaySchedule) {
             setShowSchedule(true)
         } else {
