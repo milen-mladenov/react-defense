@@ -54,21 +54,27 @@ Upon submit based on the information you will be checked for the type of access 
 
 Here are some default accounts for testing:
 users = {
-        admin: {
-            password: 123456,
-            access: "full",
-        },
-        super: {
-            password: 123321,
-            access: "partial"
-        },
-        serverOne: {
-            password: 654321,
-            access: "normal"
-        },
-        serverTwo: {
-            password: 1,
-            access: "normal"
-        }
-
+ManagerFour: {password: 4, access: 'partial', department: 'managers', position: 'rotation'}
+ManagerOne: {password: 123456, access: 'full', department: 'managers', position: 'senior'}
+ManagerTree: {password: 3, access: 'partial', department: 'managers', position: 'rotation'}
+ManagerTwo: {password: 123321, access: 'full', department: 'managers', position: 'senior'}
+bartenderFive: {password: 5555, access: 'partial', department: 'bar', position: 'senior'}
+bartenderFour: {password: 1234, access: 'normal', department: 'bar', position: 'rotation'}
+bartenderOne: {password: 123123, access: 'partial', department: 'bar', position: 'senior'}
+bartenderTree: {password: 3, access: 'normal', department: 'bar', position: 'rotation'}
+bartenderTwo: {password: 1, access: 'partial', department: 'bar', position: 'senior'}
+cookEight: {password: 3337, access: 'normal', department: 'kitchen', position: 'rotation'}
+cookFive: {password: 3334, access: 'normal', department: 'kitchen', position: 'rotation'}
+cookFour: {password: 3333, access: 'normal', department: 'kitchen', position: 'rotation'}
+cookOne: {password: 3330, access: 'partial', department: 'kitchen', position: 'senior'}
+cookSeven: {password: 3336, access: 'normal', department: 'kitchen', position: 'rotation'}
+cookSix: {password: 3335, access: 'normal', department: 'kitchen', position: 'rotation'}
+cookTree: {password: 3332, access: 'partial', department: 'kitchen', position: 'senior'}
+cookTwo: {password: 3331, access: 'partial', department: 'kitchen', position: 'senior'}
+serverFive: {password: 5555, access: 'normal', department: 'servers', position: 'rotation'}
+serverFour: {password: 1234, access: 'normal', department: 'servers', position: 'rotation'}
+serverOne: {password: 654321, access: 'partial', department: 'servers', position: 'senior'}
+serverTree: {password: 3, access: 'normal', department: 'servers', position: 'rotation'}
+serverTwo: {password: 1, access: 'partial', department: 'servers', position: 'senior'}
+}
   
