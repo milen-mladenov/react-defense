@@ -13,7 +13,7 @@ export const LeftOrderSection = ({ table, filter }) => {
     const [tableInfo, setTableInfo] = useState(table[2])
     const [tableOrder, setTableOrder] = useState(table[1])
     const [hasNewOrder, setHasNewOrder] = useState(false)
-    const [orderItem, setOrderItem] = useState({})
+    const [orderItems, setOrderItems] = useState([])
     const [getItems, setGetItems] = useState([]);
 
     useEffect(() => {
@@ -42,19 +42,19 @@ export const LeftOrderSection = ({ table, filter }) => {
 
     const tableNumber = table[0];
 
-    function newItemHandler(e) {
+    function newItemHandler(item) {
 
-        setOrderItem(e)
-        console.log(orderItem);
+        setOrderItems(order => ([...order, item]))
+        
     }
 
     useEffect(() => {
-        if (orderItem !== "") {
+        if (orderItems !== "") {
             setHasNewOrder(true)
         } else {
             setHasNewOrder(false)
         }
-    }, [orderItem])
+    }, [orderItems])
 
     return (
         <section id="orders_section" className={styles.orders_section}>
@@ -74,9 +74,10 @@ export const LeftOrderSection = ({ table, filter }) => {
             </div>
             <TableInformation tableNumber={tableNumber} amount={table[2].amount} />
             <div className={styles.orderdered_items}>
-                <TableOrder tableOrder={tableOrder} orderItem={orderItem} />
+                <TableOrder handler={newItemHandler} />
+                {orderItems.map(item=><li>{item.product} {item.count} {item.price}</li>)}
             </div>
-            {hasNewOrder ? <button className={styles.send_order_button}>Поръчай</button> : <button className={styles.send_order_button} disabled>Поръчай</button>}
+            <button className={styles.send_order_button} disabled={hasNewOrder}>Поръчай</button>
         </section>
     )
 }
