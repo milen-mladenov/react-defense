@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import styles from "./ManageAccounts.module.css"
 import { createEmployee, getAllEployees } from '../../../services/EmployeeApi'
 import { ListItem } from "./ListItem"
-import { useEmployees } from '../../utility/getEmployees'
+import { useEmployees } from '../../utility/hooks/useEmployees'
 export const ManageAccounts = () => {
     const [passwordType, setPassowrdType] = useState("password")
     const [form, setForm] = useState(false)

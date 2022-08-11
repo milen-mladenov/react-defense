@@ -5,7 +5,7 @@ import check from '../../../utility/svg/check.svg'
 
 
 export const ScheduleInput = ({ person, handler }) => {
-    const [employee, setEmployee] = useState(person)
+    const [employee, setEmployee] = useState({ "FirstName": person.FirstName, })
     const [submited, setSubmited] = useState(false)
 
     function inputHandler(e) {
@@ -26,28 +26,29 @@ export const ScheduleInput = ({ person, handler }) => {
 
     return (
         <div className={styles.employeeField}>
-            <input className={styles.employeeName}
+            <p>{employee.FirstName}</p>
+            {/* <input className={styles.employeeName}
                 type="text"
                 name="name"
                 placeholder="employee"
                 onChange={inputHandler}
-                value={employee.FirstName} />
+                value={employee.FirstName} /> */}
             <div className={styles.employeeHours}>
                 <input
                     type="text"
-                    name="shiftStart"
+                    name="ShiftStart"
                     placeholder="from"
                     disabled={submited}
                     onChange={inputHandler}
-                    value={employee.shiftStart} />
+                    value={employee.ShiftStart} />
                 <p>-</p>
                 <input
                     type="text"
-                    name="shiftEnd"
+                    name="ShiftEnd"
                     placeholder="to"
                     disabled={submited}
                     onChange={inputHandler}
-                    value={employee.shiftEnd} />
+                    value={employee.ShiftEnd} />
                 {submited
                     ? <img className={styles.submitIcon} src={check} />
                     : <img className={styles.submitIcon} onClick={submitPerson} src={circle} />

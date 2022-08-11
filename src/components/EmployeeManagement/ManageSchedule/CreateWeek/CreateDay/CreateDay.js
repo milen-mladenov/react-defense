@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Staffer } from "../Staffer/Staffer"
+import { useSchedule } from "../../../../utility/hooks/useSchedule";
 import styles from "./CreateDay.module.css"
 import moment from 'moment'
 
@@ -8,13 +8,14 @@ let kitchen;
 let servers;
 let managers;
 
-export const CreateDay = ({ day, schedule, dayHandler, scheduleHandler }) => {
+export const CreateDay = ({ day, dayHandler, scheduleHandler }) => {
     const [hasSchedule, setHasSchedule] = useState(false)
     const [dayState, setDayState] = useState("")
     const today = moment()
-
+    const schedule = useSchedule()
     useEffect(() => {
-        if (schedule.hasOwnProperty(day.format("D/M/Y"))) {
+
+        if (schedule.hasOwnProperty(day.format("DD/MM/YY"))) {
             setHasSchedule(true)
         } else {
             setHasSchedule(false)
@@ -26,14 +27,13 @@ export const CreateDay = ({ day, schedule, dayHandler, scheduleHandler }) => {
         } else {
             setDayState("future")
         }
-    }, [day])
+    }, [day, schedule])
 
-
-    if (hasSchedule && schedule.hasOwnProperty(day.format("D/M/Y"))) {
-        bar = Object.keys(schedule[day.format("D/M/Y")].bar).length
-        kitchen = Object.keys(schedule[day.format("D/M/Y")].kitchen).length
-        servers = Object.keys(schedule[day.format("D/M/Y")].floor).length
-        managers = Object.keys(schedule[day.format("D/M/Y")].floorManagement).length
+    if (hasSchedule && schedule.hasOwnProperty(day.format("DD/MM/YY"))) {
+        bar = Object.keys(schedule[day.format("DD/MM/YY")].Bar).length
+        kitchen = Object.keys(schedule[day.format("DD/MM/YY")].Kitchen).length
+        servers = Object.keys(schedule[day.format("DD/MM/YY")].Servers).length
+        managers = Object.keys(schedule[day.format("DD/MM/YY")].Managers).length
     }
 
     function select() {
@@ -43,6 +43,7 @@ export const CreateDay = ({ day, schedule, dayHandler, scheduleHandler }) => {
 
     return (
         <td>
+
             <div onClick={select} className={`${styles.dayBox} ${styles[dayState]}`}>
                 <p className={styles.day}>{day.format("D")}</p>
                 {hasSchedule ? <ul className={styles.staffList}>

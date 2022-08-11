@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { getAllEployees } from "../../services/EmployeeApi"
+import { getAllEployees } from "../../../services/EmployeeApi"
 
 
 export const useEmployees = () => {

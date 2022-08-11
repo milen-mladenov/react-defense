@@ -4,11 +4,12 @@ import styles from './ManageSchedule.module.css'
 import moment from 'moment'
 import { buildCalendar } from '../../utility/buildCalendar'
 import { CreateWeek } from './CreateWeek/CreateWeek'
-import schedule from '../../utility/schedule.json'
+// import schedule from '../../utility/schedule.json'
 import { DaySchedule } from './DaySchedule/DaySchedule'
 import { CreateSchedule } from './CreateSchedule/CreateSchedule'
-
+import { useSchedule } from '../../utility/hooks/useSchedule'
 let currDaySchedule;
+
 export const ManageSchedule = () => {
 
     const [calendar, setCalendar] = useState([]);
@@ -16,7 +17,7 @@ export const ManageSchedule = () => {
     const [showSchedule, setShowSchedule] = useState(false);
     const [createSchedule, setCreateSchedule] = useState(false)
     const currDate = moment();
-
+    const schedule = useSchedule()
     useEffect(() => {
         setCalendar(buildCalendar(selectedDay));
     }, [selectedDay]);
@@ -56,6 +57,7 @@ export const ManageSchedule = () => {
 
     return (
         <div>
+
             <div>
                 <h2>Current date: {currDate.format("D/M/Y")}</h2>
             </div>
@@ -77,7 +79,7 @@ export const ManageSchedule = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {calendar.map(week => <CreateWeek key={week[0].format("DD/MM/YY")} week={week} schedule={schedule} scheduleHandler={scheduleHandler} select={setSelectedDay} dayHandler={dayHandler} />)}
+                    {calendar.map(week => <CreateWeek key={week[0].format("DD/MM/YY")} week={week} scheduleHandler={scheduleHandler} select={setSelectedDay} dayHandler={dayHandler} />)}
                 </tbody>
             </table>
             {createSchedule && <CreateSchedule day={selectedDay} closeSchedule={closeSchedule} />}

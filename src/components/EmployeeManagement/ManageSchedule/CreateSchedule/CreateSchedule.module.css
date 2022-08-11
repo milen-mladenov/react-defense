@@ -3,8 +3,8 @@
     display: grid;
     grid-template-areas:
         "date date"
-        "bar kitchen"
-        "servers managers";
+        "servers managers"
+        "bar kitchen";
     width: 60%;
     height: 55%;
     top: 0;
