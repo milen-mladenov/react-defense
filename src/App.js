@@ -1,22 +1,23 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
-
-import { Header } from './components/Header/Header';
-import { InventoryScreen } from './components/InventoryScreen/InventoryScreen';
-import { Login } from './components/Login/Login';
-import { OrderingScreen } from './components/OrderingScreen/OrderingScreen'
-import { EmployeeManagement } from './components/EmployeeManagement/EmployeeManagement';
-import { ManageAccounts } from './components/EmployeeManagement/ManageAccounts/ManageAccounts'
 import { setUserData, clearUserData } from './services/utility';
+
+import { EmployeeManagement } from './components/EmployeeManagement/EmployeeManagement';
+import { InventoryScreen } from './components/InventoryScreen/InventoryScreen';
+import { OrderingScreen } from './components/OrderingScreen/OrderingScreen'
+import { Header } from './components/Header/Header';
+import { Login } from './components/Login/Login';
+
 
 
 function App() {
 
-  const [loginStatus, setLoginStatus] = useState({
-    userName: "",
-    userAccess: ""
-  })
+  // const [loginStatus, setLoginStatus] = useState({
+  //   userName: "",
+  //   userAccess: ""
+  // })
+  const [loginStatus, setLoginStatus] = useState({})
   const [state, setState] = useState(false)
 
   function loginHandler(user, access) {

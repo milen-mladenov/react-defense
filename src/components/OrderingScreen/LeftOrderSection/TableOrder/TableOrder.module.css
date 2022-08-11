@@ -4,6 +4,7 @@
 }
 
 .order_table {
+    width: 100%;
     border-collapse: collapse;
     justify-content: end;
     position: relative;
@@ -20,8 +21,8 @@ td {
     border: 1px solid;
 }
 
-th:nth-child(2),
-td:nth-child(2) {
+.tableBody th:nth-child(2),
+.tableBody td:nth-child(2) {
     width: 320px;
 }
 
