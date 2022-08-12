@@ -2,24 +2,21 @@ import { useEffect, useState } from 'react'
 import moment from 'moment'
 import styles from './RightOrderSection.module.css'
 import closeMenu from '../../utility/svg/closeMenu.svg'
-import { TableOptions } from './TableSelect_options/TableOptions'
-import { MoreOptions } from './MoreOptions/MoreOptions'
+
 import { Table } from './Table/Table'
 import { getUserData } from '../../../services/utility'
-import { createNewTable } from '../../../services/TablesApi'
+import { createNewTable, updateTable } from '../../../services/TablesApi'
 
 
 export const RightOrderSection = ({ newTable, currTables, table, selectTableHandler }) => {
 
     const [showInfo, setShowInfo] = useState(false)
     const [createTable, setCreateTable] = useState(false)
+    const [showRecipe, setShowRecipe] = useState(false)
     const currentUser = getUserData()
     const tableNumber = table[0] || "";
     const tableServer = table[2]?.server || "";
     const tableNote = table[2]?.note || ""
-    // const tableNumber = 0;
-    // const tableServer = "";
-    // const tableNote = ""
 
     useEffect(() => {
         setShowInfo(true)
@@ -53,6 +50,23 @@ export const RightOrderSection = ({ newTable, currTables, table, selectTableHand
         createNewTable(table)
     }
 
+    function closeTable() {
+        table[2].Status = false
+        let number = table[0]
+        let curOrder = table[1]
+        let details = table[2]
+        updateTable(number, curOrder, details)
+    }
+
+    function printRecipe() {
+
+        setShowRecipe(true)
+
+        setTimeout(() => {
+            setShowRecipe(false)
+        }, 2500)
+    }
+
     return (
         <>
             {!showInfo && <section className={styles.table_select_and_menu_section}>
@@ -60,7 +74,7 @@ export const RightOrderSection = ({ newTable, currTables, table, selectTableHand
                     <button id="open_new_table_button" onClick={openNewTable} className={styles.open_new_table_button}>Отвори нова маса</button>
                     <button onClick={() => setShowInfo(!showInfo)} >More Info</button>
                     <div className={styles.filters}>
-                        <TableOptions />
+
                     </div>
                     <div className={styles.tables}>
                         <div className={styles.opened_tables}>
@@ -111,10 +125,27 @@ export const RightOrderSection = ({ newTable, currTables, table, selectTableHand
                 </div>
                 <h3 className={styles.opened_table_server}>Сервитьор: {tableServer}</h3>
                 <div className={styles.opened_table_buttons}>
-                    <button className={styles.opened_table_print}>Касова бележка</button>
-                    <button className={styles.close_table}>Затвори масата</button>
+                    <button onClick={printRecipe} className={styles.opened_table_print}>Касова бележка</button>
+                    <button onClick={closeTable} className={styles.close_table}>Затвори масата</button>
                 </div>
-                <MoreOptions />
+
+            </section>}
+
+            {showRecipe && <section className={styles.recipeDemo}>
+                <h1>HELLO This is a demo recipe </h1>
+                <p>----------------</p>
+                <h2>Teble {table[0]}</h2>
+                <p>----------------</p>
+
+                <ol>
+                    {table[1]?.map(item => <li>{item.product} x {item.count} single price:{item.price}lv.</li>)}
+                </ol>
+                <div className={styles.recipePrice}>
+                    <p>------------------</p>
+                    <h2 >Total: {table[2]?.amount}</h2>
+                    <p>----------------</p>
+                </div>
+                <h3>Thank you for comming!</h3>
             </section>}
         </>
     )

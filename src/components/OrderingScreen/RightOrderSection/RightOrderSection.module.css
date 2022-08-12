@@ -240,3 +240,23 @@
     cursor: pointer;
     width: 50%;
 }
+
+.recipeDemo {
+    position: absolute;
+    padding: 4rem 2rem 6rem;
+    background-color: var(--base-light-gray);
+    border-radius: 4px;
+    box-shadow: 0 2px 2px 1px;
+
+}
+
+.recipePrice {
+    position: absolute;
+    bottom: 2rem;
+    right: 1rem;
+}
+
+.recipeDemo h3 {
+    position: absolute;
+    bottom: 1rem;
+}

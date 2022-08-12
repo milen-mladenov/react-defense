@@ -27,8 +27,6 @@ export async function createNewTable(newTabte) {
 
 }
 
-
-
 export async function getDayTables(date) {
     const dayTables = {
         allOpenedTables: [],
@@ -61,26 +59,18 @@ export async function getDayTables(date) {
             } else {
                 dayTables.allClosedTables.push(table)
             }
-            // console.log(Date);
-            // console.log(Order);
-            // console.log(TableNumber);
-            // console.log(Details);
-            // console.log(Status);
 
-            // console.log(dayTables.allOpenedTables);
         }
     } catch (error) {
         console.error('Error while fetching Tables', error);
     }
 
-    console.log(dayTables);
     return dayTables
 }
 
 export async function updateTable(tabmeNumber, order, details) {
 
     const Tables = Parse.Object.extend('Tables');
-
     const query = new Parse.Query(Tables);
     try {
 
@@ -92,13 +82,6 @@ export async function updateTable(tabmeNumber, order, details) {
         object.set('Status', details.Status);
         try {
             const response = await object.save();
-
-            console.log(response.get('Date'));
-            console.log(response.get('Order'));
-            console.log(response.get('TableNumber'));
-            console.log(response.get('Details'));
-            console.log(response.get('Status'));
-            console.log('Tables updated', response);
 
         } catch (error) {
             console.error('Error while updating Tables', error);
