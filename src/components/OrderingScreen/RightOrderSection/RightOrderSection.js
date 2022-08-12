@@ -6,6 +6,7 @@ import { TableOptions } from './TableSelect_options/TableOptions'
 import { MoreOptions } from './MoreOptions/MoreOptions'
 import { Table } from './Table/Table'
 import { getUserData } from '../../../services/utility'
+import { createNewTable } from '../../../services/TablesApi'
 
 
 export const RightOrderSection = ({ newTable, currTables, table, selectTableHandler }) => {
@@ -41,12 +42,15 @@ export const RightOrderSection = ({ newTable, currTables, table, selectTableHand
             guests: data.get("numberOfGuests"),
             note: data.get("tableNote"),
             amount: 0,
+            Status: true,
+            Date: moment().format("DD/MM/YYYY"),
         }
 
         let table = [Number(data.get("tableNumber")), [], tableInfo]
         console.log(table);
         newTable(table)
         setCreateTable(false)
+        createNewTable(table)
     }
 
     return (

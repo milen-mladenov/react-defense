@@ -141,7 +141,6 @@ export const LeftOrderSection = ({ table, filter, handleNewOrder }) => {
                 <table id="order_table" className={styles.new_order_table}>
                     <thead>
                         <tr id="order_table_head" className={styles.order_table_head}>
-
                             <th>
                                 <p>Product name</p>
                             </th>
@@ -149,7 +148,7 @@ export const LeftOrderSection = ({ table, filter, handleNewOrder }) => {
                                 <p>Count ordered</p>
                             </th>
                             <th>
-                                <p>price</p>
+                                <p>Price</p>
                             </th>
                         </tr>
                     </thead>

@@ -9,18 +9,17 @@ Parse.initialize(applicationId, javaScriptKey);
 Parse.serverURL = hostUrl;
 
 
-export async function createNewDayTables(newTabtes) {
-
+export async function createNewTable(newTabte) {
 
     const myNewObject = new Parse.Object('Tables');
-    myNewObject.set('Date', newTabtes.Date);
-    if (newTabtes.Opened) {
-        myNewObject.set('Opened', newTabtes.Opened);
-    }
-    myNewObject.set('Closed', []);
+    myNewObject.set('Date', newTabte[2].Date);
+    myNewObject.set('Order', newTabte[1]);
+    myNewObject.set('TableNumber', newTabte[0]);
+    myNewObject.set('Details', newTabte[2]);
+    myNewObject.set('Status', newTabte[2].Status);
     try {
         const result = await myNewObject.save();
-        // Access the Parse Object attributes using the .GET method
+
         console.log('Tables created', result);
     } catch (error) {
         console.error('Error while creating Tables: ', error);
