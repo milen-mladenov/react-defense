@@ -13,10 +13,6 @@ import { Login } from './components/Login/Login';
 
 function App() {
 
-  // const [loginStatus, setLoginStatus] = useState({
-  //   userName: "",
-  //   userAccess: ""
-  // })
   const [loginStatus, setLoginStatus] = useState({})
   const [state, setState] = useState(false)
 

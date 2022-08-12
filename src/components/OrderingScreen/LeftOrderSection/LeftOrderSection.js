@@ -10,16 +10,18 @@ import { getAllInventory, getAllBarItems, getAllKitchenItems } from '../../../se
 
 export const LeftOrderSection = ({ table, filter, handleNewOrder }) => {
     const [keypad, setKeypad] = useState(false)
-    const [tableInfo, setTableInfo] = useState(table[2])
-    const [currTableOrder, setCurrTableOrder] = useState([table[1]])
+    const [currTableOrder, setCurrTableOrder] = useState([])
     const [hasNewOrder, setHasNewOrder] = useState(false)
     const [orderItems, setOrderItems] = useState([])
     const [getItems, setGetItems] = useState([]);
     const [allItems, setAllItems] = useState([])
 
     useEffect(() => {
+        let ta = [table[1]];
+        setCurrTableOrder(ta)
+
         getAllItems()
-    }, [])
+    }, [table])
 
     async function getAllItems() {
         const res = await getAllInventory()
@@ -51,7 +53,7 @@ export const LeftOrderSection = ({ table, filter, handleNewOrder }) => {
     }
 
     const tableNumber = table[0] || "";
-    const amount = table[2]?.amount || 0
+    let amount = table[2]?.amount || 0
     function newItemHandler(item) {
         setOrderItems(order => ([...order, item]))
     }
@@ -59,6 +61,7 @@ export const LeftOrderSection = ({ table, filter, handleNewOrder }) => {
     function postNewOrder() {
 
         handleNewOrder(orderItems);
+        setCurrTableOrder(order => ([...order, orderItems]))
         setOrderItems([])
     }
     useEffect(() => {
@@ -78,22 +81,20 @@ export const LeftOrderSection = ({ table, filter, handleNewOrder }) => {
             "product": data.get("product"),
             "count": Number(data.get("count")),
         }
+
         allItems.forEach(element => {
             if (element.ProductName == item.product || element.ProductCode == Number(item.product)) {
                 item.product = element.ProductName
                 return currentItem = element
             }
-
         });
+
         if (currentItem) {
             item.price = currentItem.SellPrice
         }
         newItemHandler(item)
     }
 
-    function test() {
-        console.log(allItems);
-    }
     return (
         <section id="orders_section" className={styles.orders_section}>
             <div id="order_section_action_type" className={styles.order_section_action_type}>
@@ -110,8 +111,8 @@ export const LeftOrderSection = ({ table, filter, handleNewOrder }) => {
                 {!keypad && <ItemButtons newItemHandler={newItemHandler} items={getItems} />}
                 {keypad && <ItemKeypad newItemHandler={newItemHandler} />}
             </div>
-            <button onClick={test}>show order</button>
-            <TableInformation tableNumber={tableNumber} amount={amount} />
+
+            <TableInformation table={table} tableNumber={tableNumber} amount={amount} />
             <div className={styles.orderdered_items}>
                 <TableOrder order={currTableOrder} />
             </div>

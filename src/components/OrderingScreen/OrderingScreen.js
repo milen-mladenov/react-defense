@@ -12,25 +12,22 @@ export const OrderingScreen = () => {
 
     const [currTables, setCurrTables] = useState
         ([
-            [23, [{}], { id: "text" + Math.random(), server: "server 1", time: 98, amount: 42.70, note: "nothing", guests: 5 }],
-            [3, [{}], { id: "text" + Math.random(), server: "server 3", time: 28, amount: 462.70, note: "", guests: 15 }],
-            [13, [{}], { id: "text" + Math.random(), server: "server 2", time: 198, amount: 32.70, note: "nothing", }],
-            [16, [{}], { id: "text" + Math.random(), server: "server 1", time: 30, amount: 142.70, note: "", guests: 2 }],
-            [35, [{}], { id: "text" + Math.random(), server: "server 2", time: 8, amount: 132.70, note: "", guests: 3 }],
-            [8, [{}], { id: "text" + Math.random(), server: "server 2", time: 19, amount: 12.70, note: "nothing", }],
-            [12, [{}], { id: "text" + Math.random(), server: "server 3", time: 205, amount: 122.70, note: "", guests: 4 }],
-            [43, [{}], { id: "text" + Math.random(), server: "server 1", time: 158, amount: 72.70, note: "nothing", guests: 4 }],
+            [23, [{ note: '', product: 'Product_3', count: 15, price: 1.2 }, { note: '', product: 'Product_12', count: 3, price: 2.6 }], { id: "text" + Math.random(), server: "server 1", time: 98, amount: 0, note: "nothing", guests: 5 }],
+            [3, [{ note: '', product: 'Product_1', count: 1, price: 12 }, { note: '', product: 'Product_5', count: 3, price: 2.6 }], { id: "text" + Math.random(), server: "server 3", time: 28, amount: 0, note: "", guests: 15 }],
+            [13, [{ note: '', product: 'Product_15', count: 5, price: 4.2 }, { note: '', product: 'Product_3', count: 3, price: 2.6 }], { id: "text" + Math.random(), server: "server 2", time: 198, amount: 0, note: "nothing", }],
+            [16, [{ note: '', product: 'Product_7', count: 11, price: 7.2 }, { note: '', product: 'Product_21', count: 3, price: 2.6 }], { id: "text" + Math.random(), server: "server 1", time: 30, amount: 0, note: "", guests: 2 }],
+            [35, [{ note: '', product: 'Product_4', count: 25, price: 12 }, { note: '', product: 'Product_1', count: 3, price: 2.6 }, { note: '', product: 'Product_7', count: 15, price: 12 }, { note: '', product: 'Product_21', count: 3, price: 2.6 }], { id: "text" + Math.random(), server: "server 2", time: 8, amount: 0, note: "", guests: 3 }],
+            [8, [{ note: '', product: 'Product_27', count: 15, price: 8.2 }, { note: '', product: 'Product_22', count: 3, price: 2.6 }], { id: "text" + Math.random(), server: "server 2", time: 19, amount: 0, note: "nothing", }],
+            [12, [{ note: '', product: 'Product_17', count: 1, price: 21.2 }, { note: '', product: 'Product_4', count: 3, price: 2.6 }], { id: "text" + Math.random(), server: "server 3", time: 205, amount: 0, note: "", guests: 4 }],
+            [43, [{ note: '', product: 'Product_2', count: 8, price: 3.2 }, { note: '', product: 'Product_12', count: 3, price: 2.6 }], { id: "text" + Math.random(), server: "server 1", time: 158, amount: 0, note: "nothing", guests: 4 }],
         ]);
+
     const [closedTabtles, setClosedTables] = useState([])
     const [dayId, setDayId] = useState("")
     const [table, setTable] = useState([])
 
     const currDate = moment().format("DD/MM/YYYY")
 
-
-    // useEffect(() => {
-    //     getTables(currDate)
-    // }, [])
     function handleItemFilters(department) {
         setFilter(department)
     }
@@ -41,6 +38,8 @@ export const OrderingScreen = () => {
             t
         ]))
     }
+
+
 
     function addToTableOrder(order) {
         let allTables = currTables
@@ -54,48 +53,30 @@ export const OrderingScreen = () => {
         });
 
         let selected = allTables.splice(tableIndex, 1)
-        selected[0][1].push(order)
-        console.log(selected[0]);
+        for (let i = 0; i < order.length; i++) {
+            selected[0][1].push(order[i]);
+        }
 
-        selected[0][1].forEach(element => {
-            let curPrice = 0
+        for (const iterator of selected[0][1]) {
+            let curPrice = iterator.count * iterator.price
+            totalAmount += curPrice
 
-            if (Array.isArray(element)) {
-                for (let i = 0; i < element.length; i++) {
-                    curPrice += element[i].count * element[i].price
-                }
-            }
-            totalAmount += Number(curPrice)
+        }
 
-        });
+
 
         selected[0][2].amount += totalAmount;
         allTables.push(selected[0])
         setCurrTables(allTables)
     }
 
-    // async function getTables(date) {
-
-    //     let tables = await getDayTables(date)
-
-    //     setCurrTables(tables.allOpenedTables)
-    //     setClosedTables(tables.allClosedTables)
-    //     setDayId(tables.id)
-
-    // }
-
     function selectTableHandler(select) {
         setTable(select)
     }
 
-    function test() {
-        console.log(dayId);
-        console.log(currTables);
-        console.log(closedTabtles);
-    }
+
     return (
         <>
-            <button onClick={test}>test</button>
             <MainFilters handler={handleItemFilters} />
             <div className={styles.orderingScreen}>
                 <LeftOrderSection table={table} filter={filter} handleNewOrder={addToTableOrder} />
