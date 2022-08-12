@@ -20,9 +20,9 @@ export const RightOrderSection = ({ newTable, currTables, table, selectTableHand
     // const tableServer = "";
     // const tableNote = ""
 
-    // useEffect(() => {
-        // setShowInfo(true)
-    // }, [table[0]])
+    useEffect(() => {
+        setShowInfo(true)
+    }, [tableNumber])
 
     function openNewTable() {
         setCreateTable(true)

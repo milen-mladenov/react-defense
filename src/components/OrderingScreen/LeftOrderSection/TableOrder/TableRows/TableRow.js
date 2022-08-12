@@ -2,18 +2,21 @@ import styles from '../TableOrder.module.css'
 import { useState } from "react"
 
 export const TableRow = ({ item }) => {
-
+    let note = item?.Note || ""
+    let product = item?.ProductName || ""
+    let count = item?.CurrentCount || ""
+    let price = item?.SellPrice || ""
     return (
         <tr>
             <td>
-                <p>{item.Note}</p>
+                <p>{note}</p>
             </td>
-            <td><p>{item.ProductName}</p></td>
+            <td><p>{product}</p></td>
             <td>
-                <p>{item.CurrentCount}</p>
+                <p>{count}</p>
             </td>
             <td>
-                <p>{item.SellPrice}</p>
+                <p>{price}</p>
             </td>
         </tr>
     )
