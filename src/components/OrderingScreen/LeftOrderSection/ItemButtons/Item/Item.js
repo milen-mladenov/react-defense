@@ -2,7 +2,9 @@ import styles from '../ItemButtons.module.css'
 
 export const Item = ({ item, newItemHandler }) => {
 
+
     function returnItem() {
+
         newItemHandler(item)
     }
 

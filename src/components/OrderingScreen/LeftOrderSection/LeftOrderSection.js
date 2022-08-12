@@ -15,6 +15,9 @@ export const LeftOrderSection = ({ table, filter, handleNewOrder }) => {
     const [orderItems, setOrderItems] = useState([])
     const [getItems, setGetItems] = useState([]);
     const [allItems, setAllItems] = useState([])
+    const [buttonInputStart, setButtonInputStart] = useState(false)
+    const [buttonInputValue, setButtonInputValue] = useState(null)
+    const [numberInput, setNumberInput] = useState("")
 
     useEffect(() => {
         let ta = [table[1]];
@@ -53,7 +56,8 @@ export const LeftOrderSection = ({ table, filter, handleNewOrder }) => {
     }
 
     const tableNumber = table[0] || "";
-    let amount = table[2]?.amount || 0
+
+
     function newItemHandler(item) {
         setOrderItems(order => ([...order, item]))
     }
@@ -95,6 +99,22 @@ export const LeftOrderSection = ({ table, filter, handleNewOrder }) => {
         newItemHandler(item)
     }
 
+    function handleButtonInput(e) {
+        setButtonInputStart(true)
+        let value
+
+        if (e.ProductName) {
+            value = e.ProductName
+        } else {
+            setNumberInput(numberInput + e)
+            value = numberInput
+            if (numberInput.length > 3) {
+                setNumberInput("")
+            }
+        }
+        setButtonInputValue(value)
+        console.log(buttonInputValue);
+    }
     return (
         <section id="orders_section" className={styles.orders_section}>
             <div id="order_section_action_type" className={styles.order_section_action_type}>
@@ -108,11 +128,11 @@ export const LeftOrderSection = ({ table, filter, handleNewOrder }) => {
                 >Keypad</button>
             </div>
             <div className={styles.ordering_section}>
-                {!keypad && <ItemButtons newItemHandler={newItemHandler} items={getItems} />}
-                {keypad && <ItemKeypad newItemHandler={newItemHandler} />}
+                {!keypad && <ItemButtons newItemHandler={handleButtonInput} items={getItems} />}
+                {keypad && <ItemKeypad newItemHandler={handleButtonInput} />}
             </div>
 
-            <TableInformation table={table} tableNumber={tableNumber} amount={amount} />
+            <TableInformation table={table} tableNumber={tableNumber} />
             <div className={styles.orderdered_items}>
                 <TableOrder order={currTableOrder} />
             </div>
@@ -148,7 +168,7 @@ export const LeftOrderSection = ({ table, filter, handleNewOrder }) => {
                         </div>
                         <div>
                             <label htmlFor="product">Product</label>
-                            <input type="text" id="product" name="product" />
+                            {buttonInputStart ? <input type="text" id="product" name="product" defaultValue={buttonInputValue} /> : <input type="text" id="product" name="product" />}
                         </div>
                         <div>
                             <label htmlFor="count">Count</label>
