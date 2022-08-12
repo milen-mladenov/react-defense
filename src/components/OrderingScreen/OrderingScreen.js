@@ -5,6 +5,7 @@ import moment from "moment"
 import { MainFilters } from "./MainFilters/MainFilters"
 import { LeftOrderSection } from "./LeftOrderSection/LeftOrderSection"
 import { RightOrderSection } from "./RightOrderSection/RightOrderSection"
+import { clearTablesData, getTablesData, setTablesData } from "../utility/tables"
 
 
 export const OrderingScreen = () => {
@@ -12,14 +13,14 @@ export const OrderingScreen = () => {
 
     const [currTables, setCurrTables] = useState
         ([
-            [23, [{ note: '', product: 'Product_3', count: 15, price: 1.2 }, { note: '', product: 'Product_12', count: 3, price: 2.6 }], { id: "text" + Math.random(), server: "server 1", time: 98, amount: 0, note: "nothing", guests: 5 }],
-            [3, [{ note: '', product: 'Product_1', count: 1, price: 12 }, { note: '', product: 'Product_5', count: 3, price: 2.6 }], { id: "text" + Math.random(), server: "server 3", time: 28, amount: 0, note: "", guests: 15 }],
-            [13, [{ note: '', product: 'Product_15', count: 5, price: 4.2 }, { note: '', product: 'Product_3', count: 3, price: 2.6 }], { id: "text" + Math.random(), server: "server 2", time: 198, amount: 0, note: "nothing", }],
-            [16, [{ note: '', product: 'Product_7', count: 11, price: 7.2 }, { note: '', product: 'Product_21', count: 3, price: 2.6 }], { id: "text" + Math.random(), server: "server 1", time: 30, amount: 0, note: "", guests: 2 }],
-            [35, [{ note: '', product: 'Product_4', count: 25, price: 12 }, { note: '', product: 'Product_1', count: 3, price: 2.6 }, { note: '', product: 'Product_7', count: 15, price: 12 }, { note: '', product: 'Product_21', count: 3, price: 2.6 }], { id: "text" + Math.random(), server: "server 2", time: 8, amount: 0, note: "", guests: 3 }],
-            [8, [{ note: '', product: 'Product_27', count: 15, price: 8.2 }, { note: '', product: 'Product_22', count: 3, price: 2.6 }], { id: "text" + Math.random(), server: "server 2", time: 19, amount: 0, note: "nothing", }],
-            [12, [{ note: '', product: 'Product_17', count: 1, price: 21.2 }, { note: '', product: 'Product_4', count: 3, price: 2.6 }], { id: "text" + Math.random(), server: "server 3", time: 205, amount: 0, note: "", guests: 4 }],
-            [43, [{ note: '', product: 'Product_2', count: 8, price: 3.2 }, { note: '', product: 'Product_12', count: 3, price: 2.6 }], { id: "text" + Math.random(), server: "server 1", time: 158, amount: 0, note: "nothing", guests: 4 }],
+            [23, [{ note: '', product: 'Product_3', count: 15, price: 1.2 }, { note: '', product: 'Product_12', count: 3, price: 2.6 }], { id: "text" + Math.random(), server: "server 1", time: "09:28:39", amount: 0, note: "nothing", guests: 5 }],
+            [3, [{ note: '', product: 'Product_1', count: 1, price: 12 }, { note: '', product: 'Product_5', count: 3, price: 2.6 }], { id: "text" + Math.random(), server: "server 3", time: "19:30:09", amount: 0, note: "", guests: 15 }],
+            [13, [{ note: '', product: 'Product_15', count: 5, price: 4.2 }, { note: '', product: 'Product_3', count: 3, price: 2.6 }], { id: "text" + Math.random(), server: "server 2", time: "12:28:10", amount: 0, note: "nothing", }],
+            [16, [{ note: '', product: 'Product_7', count: 11, price: 7.2 }, { note: '', product: 'Product_21', count: 3, price: 2.6 }], { id: "text" + Math.random(), server: "server 1", time: "16:41:39", amount: 0, note: "", guests: 2 }],
+            [35, [{ note: '', product: 'Product_4', count: 25, price: 12 }, { note: '', product: 'Product_1', count: 3, price: 2.6 }, { note: '', product: 'Product_7', count: 15, price: 12 }, { note: '', product: 'Product_21', count: 3, price: 2.6 }], { id: "text" + Math.random(), server: "server 2", time: "10:10:36", amount: 0, note: "", guests: 3 }],
+            [8, [{ note: '', product: 'Product_27', count: 15, price: 8.2 }, { note: '', product: 'Product_22', count: 3, price: 2.6 }], { id: "text" + Math.random(), server: "server 2", time: "16:48:29", amount: 0, note: "nothing", }],
+            [12, [{ note: '', product: 'Product_17', count: 1, price: 21.2 }, { note: '', product: 'Product_4', count: 3, price: 2.6 }], { id: "text" + Math.random(), server: "server 3", time: "12:28:59", amount: 0, note: "", guests: 4 }],
+            [43, [{ note: '', product: 'Product_2', count: 8, price: 3.2 }, { note: '', product: 'Product_12', count: 3, price: 2.6 }], { id: "text" + Math.random(), server: "server 1", time: "06:48:39", amount: 0, note: "nothing", guests: 4 }],
         ]);
 
     const [closedTabtles, setClosedTables] = useState([])
@@ -39,6 +40,14 @@ export const OrderingScreen = () => {
         ]))
     }
 
+    useEffect(() => {
+
+        let tables = getTablesData()
+        if(tables !== null){
+            setCurrTables(tables)
+        }
+        
+    }, [])
 
 
     function addToTableOrder(order) {
@@ -64,17 +73,18 @@ export const OrderingScreen = () => {
         }
 
 
-
+        clearTablesData()
         selected[0][2].amount += totalAmount;
         allTables.push(selected[0])
         setCurrTables(allTables)
+        setTablesData(allTables)
     }
 
     function selectTableHandler(select) {
         setTable(select)
     }
 
-    function test(){
+    function test() {
         console.log(table);
         console.log(table[2].amount);
     }

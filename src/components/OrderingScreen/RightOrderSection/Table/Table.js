@@ -1,10 +1,9 @@
-import { tab } from '@testing-library/user-event/dist/tab'
 import styles from '../RightOrderSection.module.css'
 
 
 export const Table = ({ table, selectTableHandler }) => {
     let tableNumber = table[0] || "";
-    let time = table[2]?.time || {};
+    let time = table[2]?.time || "";
     let tableMessage = table[2]?.note || "";
     let people = table[2]?.guests || "";
 
