@@ -7,7 +7,7 @@ import { getAllInventory } from "../../../../services/InventoryApi"
 export const TableOrder = ({ handler }) => {
     const [order, setOrder] = useState([])
     const [allItems, setAllItems] = useState([])
-
+    
     useEffect(() => {
         getFullInventory()
     }, [])

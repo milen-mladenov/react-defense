@@ -10,12 +10,12 @@ import { getAllInventory, getAllBarItems, getAllKitchenItems } from '../../../se
 
 export const LeftOrderSection = ({ table, filter }) => {
     const [keypad, setKeypad] = useState(false)
-    const [tableInfo, setTableInfo] = useState(table[2])
-    const [tableOrder, setTableOrder] = useState(table[1])
+    // const [tableInfo, setTableInfo] = useState(table[2])
+    // const [tableOrder, setTableOrder] = useState(table[1])
     const [hasNewOrder, setHasNewOrder] = useState(false)
     const [orderItems, setOrderItems] = useState([])
     const [getItems, setGetItems] = useState([]);
-
+    
     useEffect(() => {
         if (filter == "All") {
             getFullInventory()
@@ -39,9 +39,9 @@ export const LeftOrderSection = ({ table, filter }) => {
         const barRes = await getAllBarItems()
         setGetItems(barRes)
     }
-
-    const tableNumber = table[0];
-
+    // let tableNumber = 0
+    const tableNumber = table[0] || "";
+    const amount = table[2]?.amount || 0
     function newItemHandler(item) {
 
         setOrderItems(order => ([...order, item]))
@@ -72,7 +72,7 @@ export const LeftOrderSection = ({ table, filter }) => {
                 {!keypad && <ItemButtons newItemHandler={newItemHandler} items={getItems} />}
                 {keypad && <ItemKeypad newItemHandler={newItemHandler} />}
             </div>
-            <TableInformation tableNumber={tableNumber} amount={table[2].amount} />
+            <TableInformation tableNumber={tableNumber} amount={amount} />
             <div className={styles.orderdered_items}>
                 <TableOrder handler={newItemHandler} />
                 {orderItems.map(item=><li>{item.product} {item.count} {item.price}</li>)}

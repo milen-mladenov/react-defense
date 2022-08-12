@@ -3,10 +3,10 @@ import styles from '../RightOrderSection.module.css'
 
 
 export const Table = ({ table, selectTableHandler }) => {
-    let tableNumber = table[0];
-    let time = table[2].time;
+    let tableNumber = table[0] || "";
+    let time = table[2].time || {};
     let tableMessage = table[2].note || "";
-    let people = table[2].guests;
+    let people = table[2].guests || "";
 
     return (
         <div onClick={() => selectTableHandler(table)} className={styles.opened_table} data-table-number={tableNumber} data-own-table="false">

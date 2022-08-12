@@ -5,37 +5,44 @@ import closeMenu from '../../utility/svg/closeMenu.svg'
 import { TableOptions } from './TableSelect_options/TableOptions'
 import { MoreOptions } from './MoreOptions/MoreOptions'
 import { Table } from './Table/Table'
+import { getUserData } from '../../../services/utility'
 
 
 export const RightOrderSection = ({ newTable, currTables, table, selectTableHandler }) => {
 
     const [showInfo, setShowInfo] = useState(false)
     const [createTable, setCreateTable] = useState(false)
+    const currentUser = getUserData()
+    const tableNumber = table[0] || "";
+    const tableServer = table[2]?.server || "";
+    const tableNote = table[2]?.note || ""
+    // const tableNumber = 0;
+    // const tableServer = "";
+    // const tableNote = ""
 
-    useEffect(() => {
-        setShowInfo(true)
-    }, [table[0]])
+    // useEffect(() => {
+        // setShowInfo(true)
+    // }, [table[0]])
 
     function openNewTable() {
         setCreateTable(true)
     }
 
-    function handleTable(e) {
+    function handleCreateTable(e) {
         e.preventDefault()
 
         let currTime = moment().format("hh:mm:ss")
         let data = new FormData(e.target)
-        
+
         let tableInfo = {
             id: `${currTime}/${data.get("tableNumber")}`,
             time: currTime,
-            server: "",
+            server: currentUser.userName,
             guests: data.get("numberOfGuests"),
             note: data.get("tableNote"),
         }
 
-        let table = [data.get("tableNumber"), {}, tableInfo]
-
+        let table = [Number(data.get("tableNumber")), {}, tableInfo]
 
         newTable(table)
         setCreateTable(false)
@@ -52,7 +59,7 @@ export const RightOrderSection = ({ newTable, currTables, table, selectTableHand
                     </div>
                     <div className={styles.tables}>
                         <div className={styles.opened_tables}>
-                            {currTables.map(table => <Table key={table[2].id} selectTableHandler={selectTableHandler} table={table} />)}
+                            {currTables?.map(table => <Table key={table[2].id} selectTableHandler={selectTableHandler} table={table} />)}
                         </div>
                     </div>
                 </div>
@@ -62,7 +69,7 @@ export const RightOrderSection = ({ newTable, currTables, table, selectTableHand
                 <div onClick={() => setCreateTable(false)} className={styles.closeBtn}>
                     <img src={closeMenu} />
                 </div>
-                <form onSubmit={handleTable}>
+                <form onSubmit={handleCreateTable}>
                     <div className={styles.tableDetails}>
                         <div>
                             <label htmlFor='tableNumber'>
@@ -94,10 +101,10 @@ export const RightOrderSection = ({ newTable, currTables, table, selectTableHand
                     <h2 onClick={() => setShowInfo(!showInfo)}>Обратно към отворените маси</h2>
                 </div>
                 <div id="opened_table_name_section" className={styles.opened_table_name_section}>
-                    <h2>Детайли за маса №: <span>{table[0]}</span></h2>
-                    <h2>{table[2].note}</h2>
+                    <h2>Детайли за маса №: <span>{tableNumber}</span></h2>
+                    <h2>{tableNote}</h2>
                 </div>
-                <h3 className={styles.opened_table_server}>Сервитьор: {table[2].server}</h3>
+                <h3 className={styles.opened_table_server}>Сервитьор: {tableServer}</h3>
                 <div className={styles.opened_table_buttons}>
                     <button className={styles.opened_table_print}>Касова бележка</button>
                     <button className={styles.close_table}>Затвори масата</button>
