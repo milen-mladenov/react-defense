@@ -5,29 +5,15 @@ import moment from "moment"
 import { MainFilters } from "./MainFilters/MainFilters"
 import { LeftOrderSection } from "./LeftOrderSection/LeftOrderSection"
 import { RightOrderSection } from "./RightOrderSection/RightOrderSection"
-import { clearTablesData, getTablesData, setTablesData } from "../utility/tables"
-import { createNewTable } from "../../services/TablesApi"
+
+import { createNewTable, getDayTables, updateTable } from "../../services/TablesApi"
 
 
 export const OrderingScreen = () => {
     const [filter, setFilter] = useState("All")
-
-    const [currTables, setCurrTables] = useState
-        ([
-            [23, [{ note: '', product: 'Product_3', count: 15, price: 1.2 }, { note: '', product: 'Product_12', count: 3, price: 2.6 }], { Date: "12/08/2022", id: "text" + Math.random(), server: "server 1", time: "09:28:39", amount: 0, note: "nothing", guests: 5, Status: true }],
-            [3, [{ note: '', product: 'Product_1', count: 1, price: 12 }, { note: '', product: 'Product_5', count: 3, price: 2.6 }], { Date: "12/08/2022", id: "text" + Math.random(), server: "server 3", time: "19:30:09", amount: 0, note: "", guests: 15, Status: true }],
-            [13, [{ note: '', product: 'Product_15', count: 5, price: 4.2 }, { note: '', product: 'Product_3', count: 3, price: 2.6 }], { Date: "12/08/2022", id: "text" + Math.random(), server: "server 2", time: "12:28:10", amount: 0, note: "nothing", Status: true }],
-            [16, [{ note: '', product: 'Product_7', count: 11, price: 7.2 }, { note: '', product: 'Product_21', count: 3, price: 2.6 }], { Date: "12/08/2022", id: "text" + Math.random(), server: "server 1", time: "16:41:39", amount: 0, note: "", guests: 2, Status: true }],
-            [35, [{ note: '', product: 'Product_4', count: 25, price: 12 }, { note: '', product: 'Product_1', count: 3, price: 2.6 }, { note: '', product: 'Product_7', count: 15, price: 12 }, { note: '', product: 'Product_21', count: 3, price: 2.6 }], { Date: "12/08/2022", id: "text" + Math.random(), server: "server 2", time: "10:10:36", amount: 0, note: "", guests: 3, Status: true }],
-            [8, [{ note: '', product: 'Product_27', count: 15, price: 8.2 }, { note: '', product: 'Product_22', count: 3, price: 2.6 }], { Date: "12/08/2022", id: "text" + Math.random(), server: "server 2", time: "16:48:29", amount: 0, note: "nothing", Status: true }],
-            [12, [{ note: '', product: 'Product_17', count: 1, price: 21.2 }, { note: '', product: 'Product_4', count: 3, price: 2.6 }], { Date: "12/08/2022", id: "text" + Math.random(), server: "server 3", time: "12:28:59", amount: 0, note: "", guests: 4, Status: true }],
-            [43, [{ note: '', product: 'Product_2', count: 8, price: 3.2 }, { note: '', product: 'Product_12', count: 3, price: 2.6 }], { Date: "12/08/2022", id: "text" + Math.random(), server: "server 1", time: "06:48:39", amount: 0, note: "nothing", guests: 4, Status: true }],
-        ]);
-
+    const [currTables, setCurrTables] = useState([]);
     const [closedTabtles, setClosedTables] = useState([])
-    const [dayId, setDayId] = useState("")
     const [table, setTable] = useState([])
-
     const currDate = moment().format("DD/MM/YYYY")
 
     function handleItemFilters(department) {
@@ -42,13 +28,13 @@ export const OrderingScreen = () => {
     }
 
     useEffect(() => {
-        let tables = getTablesData()
-        if (tables !== null) {
-            setCurrTables(tables)
+        cleanUp()
+        allTables(currDate)
+
+        function cleanUp() {
+            setCurrTables([])
         }
-
     }, [])
-
 
     function addToTableOrder(order) {
         let allTables = currTables
@@ -69,24 +55,42 @@ export const OrderingScreen = () => {
         for (const iterator of selected[0][1]) {
             let curPrice = iterator.count * iterator.price
             totalAmount += curPrice
-
         }
 
+        let currTable = selected[0]
+        let number = currTable[0]
+        let curOrder = currTable[1]
+        let details = currTable[2]
 
-        clearTablesData()
-        selected[0][2].amount += totalAmount;
-        allTables.push(selected[0])
+        currTable[2].amount += totalAmount;
+        updateTable(number, curOrder, details)
+        allTables.push(currTable)
         setCurrTables(allTables)
-        setTablesData(allTables)
+
     }
 
     function selectTableHandler(select) {
         setTable(select)
     }
 
-    function test() {
+    function allTables(currDate) {
+        getTables(currDate)
 
-        console.log(currTables);
+        async function getTables(date) {
+            let result = await getDayTables(date)
+
+            result.allClosedTables.forEach(table => {
+                setClosedTables(state => ([...state, table]))
+            })
+            result.allOpenedTables.forEach(table => {
+                setCurrTables(state => ([...state, table]))
+            })
+
+        }
+    }
+
+    function test() {
+        console.log("yep");
     }
 
     return (

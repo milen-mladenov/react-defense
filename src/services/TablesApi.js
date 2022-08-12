@@ -27,6 +27,8 @@ export async function createNewTable(newTabte) {
 
 }
 
+
+
 export async function getDayTables(date) {
     const dayTables = {
         allOpenedTables: [],
@@ -40,43 +42,64 @@ export async function getDayTables(date) {
     try {
         const results = await query.find();
         for (const object of results) {
-            const Id = results[results.indexOf(object)].id;
-            const Opened = object.get('Opened');
-            const Closed = object.get('Closed');
+            let table = []
 
-            if (Opened) {
-                dayTables.allOpenedTables.push(Opened)
-            }
-            if (Closed) {
-                dayTables.allClosedTables.push(Closed)
-            }
-            dayTables.id = Id
+            const id = results[results.indexOf(object)].id;
+            const Date = object.get('Date')
+            const Order = object.get('Order')
+            const TableNumber = object.get('TableNumber')
+            const Details = object.get('Details')
+            const Status = object.get('Status')
 
+            Details.Status = Status;
+            Details.Date = Date;
+            Details.id = id
+
+            table.push(TableNumber, Order, Details)
+            if (Status) {
+                dayTables.allOpenedTables.push(table)
+            } else {
+                dayTables.allClosedTables.push(table)
+            }
+            // console.log(Date);
+            // console.log(Order);
+            // console.log(TableNumber);
+            // console.log(Details);
+            // console.log(Status);
+
+            // console.log(dayTables.allOpenedTables);
         }
     } catch (error) {
         console.error('Error while fetching Tables', error);
     }
 
+    console.log(dayTables);
     return dayTables
 }
 
-export async function updateTablesStatus(id, tables) {
+export async function updateTable(tabmeNumber, order, details) {
 
     const Tables = Parse.Object.extend('Tables');
+
     const query = new Parse.Query(Tables);
     try {
 
-        const object = await query.get(id);
-        object.set('Date', tables.Date);
-        object.set('Opened', tables.Opened);
-        object.set('Closed', tables.Closed);
+        const object = await query.get(details.id);
+        object.set('Date', details.Date);
+        object.set('Order', order);
+        object.set('TableNumber', tabmeNumber);
+        object.set('Details', details);
+        object.set('Status', details.Status);
         try {
             const response = await object.save();
 
             console.log(response.get('Date'));
-            console.log(response.get('Opened'));
-            console.log(response.get('Closed'));
+            console.log(response.get('Order'));
+            console.log(response.get('TableNumber'));
+            console.log(response.get('Details'));
+            console.log(response.get('Status'));
             console.log('Tables updated', response);
+
         } catch (error) {
             console.error('Error while updating Tables', error);
         }
