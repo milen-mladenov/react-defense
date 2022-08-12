@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react"
 import styles from './OrderingScreen.module.css'
-import { getDayTables, updateTablesStatus } from "../../services/TablesApi"
 import moment from "moment"
 
 import { MainFilters } from "./MainFilters/MainFilters"
 import { LeftOrderSection } from "./LeftOrderSection/LeftOrderSection"
 import { RightOrderSection } from "./RightOrderSection/RightOrderSection"
+
 
 export const OrderingScreen = () => {
     const [filter, setFilter] = useState("All")
@@ -20,10 +20,6 @@ export const OrderingScreen = () => {
             [8, [{}], { id: "text" + Math.random(), server: "server 2", time: 19, amount: 12.70, note: "nothing", }],
             [12, [{}], { id: "text" + Math.random(), server: "server 3", time: 205, amount: 122.70, note: "", guests: 4 }],
             [43, [{}], { id: "text" + Math.random(), server: "server 1", time: 158, amount: 72.70, note: "nothing", guests: 4 }],
-            [23, [{}], { id: "text" + Math.random(), server: "server 1", time: 98, amount: 42.70, note: "nothing", guests: 5 }],
-            [3, [{}], { id: "text" + Math.random(), server: "server 3", time: 28, amount: 462.70, note: "", guests: 15 }],
-            [13, [{}], { id: "text" + Math.random(), server: "server 2", time: 198, amount: 32.70, note: "nothing", }],
-
         ]);
     const [closedTabtles, setClosedTables] = useState([])
     const [dayId, setDayId] = useState("")
@@ -38,6 +34,7 @@ export const OrderingScreen = () => {
     function handleItemFilters(department) {
         setFilter(department)
     }
+
     function newTableHandler(t) {
         setCurrTables(state => ([
             ...state,
@@ -45,19 +42,50 @@ export const OrderingScreen = () => {
         ]))
     }
 
-    async function getTables(date) {
+    function addToTableOrder(order) {
+        let allTables = currTables
+        let tableIndex
+        let totalAmount = 0
 
-        let tables = await getDayTables(date)
+        allTables.forEach(element => {
+            if (element[0] == table[0]) {
+                tableIndex = allTables.indexOf(element);
+            }
+        });
 
-        setCurrTables(tables.allOpenedTables)
-        setClosedTables(tables.allClosedTables)
-        setDayId(tables.id)
+        let selected = allTables.splice(tableIndex, 1)
+        selected[0][1].push(order)
+        console.log(selected[0]);
 
+        selected[0][1].forEach(element => {
+            let curPrice = 0
+
+            if (Array.isArray(element)) {
+                for (let i = 0; i < element.length; i++) {
+                    curPrice += element[i].count * element[i].price
+                }
+            }
+            totalAmount += Number(curPrice)
+
+        });
+
+        selected[0][2].amount += totalAmount;
+        allTables.push(selected[0])
+        setCurrTables(allTables)
     }
+
+    // async function getTables(date) {
+
+    //     let tables = await getDayTables(date)
+
+    //     setCurrTables(tables.allOpenedTables)
+    //     setClosedTables(tables.allClosedTables)
+    //     setDayId(tables.id)
+
+    // }
 
     function selectTableHandler(select) {
         setTable(select)
-        console.log(select);
     }
 
     function test() {
@@ -70,7 +98,7 @@ export const OrderingScreen = () => {
             <button onClick={test}>test</button>
             <MainFilters handler={handleItemFilters} />
             <div className={styles.orderingScreen}>
-                <LeftOrderSection table={table} filter={filter} />
+                <LeftOrderSection table={table} filter={filter} handleNewOrder={addToTableOrder} />
                 <RightOrderSection table={table} currTables={currTables} newTable={newTableHandler} selectTableHandler={selectTableHandler} />
             </div>
         </>

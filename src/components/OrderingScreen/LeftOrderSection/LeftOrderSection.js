@@ -8,7 +8,7 @@ import { TableOrder } from './TableOrder/TableOrder';
 import { getAllInventory, getAllBarItems, getAllKitchenItems } from '../../../services/InventoryApi'
 
 
-export const LeftOrderSection = ({ table, filter }) => {
+export const LeftOrderSection = ({ table, filter, handleNewOrder }) => {
     const [keypad, setKeypad] = useState(false)
     const [tableInfo, setTableInfo] = useState(table[2])
     const [currTableOrder, setCurrTableOrder] = useState([table[1]])
@@ -54,9 +54,13 @@ export const LeftOrderSection = ({ table, filter }) => {
     const amount = table[2]?.amount || 0
     function newItemHandler(item) {
         setOrderItems(order => ([...order, item]))
-
     }
 
+    function postNewOrder() {
+
+        handleNewOrder(orderItems);
+        setOrderItems([])
+    }
     useEffect(() => {
         if (orderItems.length !== 0) {
             setHasNewOrder(true)
@@ -155,7 +159,7 @@ export const LeftOrderSection = ({ table, filter }) => {
                     </div>
                 </form>
             </div>
-            <button className={styles.send_order_button} disabled={!hasNewOrder}>Поръчай</button>
+            <button onClick={postNewOrder} className={styles.send_order_button} disabled={!hasNewOrder}>Поръчай</button>
         </section>
     )
 }
