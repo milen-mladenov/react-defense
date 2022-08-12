@@ -41,12 +41,11 @@ export const OrderingScreen = () => {
     }
 
     useEffect(() => {
-
         let tables = getTablesData()
-        if(tables !== null){
+        if (tables !== null) {
             setCurrTables(tables)
         }
-        
+
     }, [])
 
 
