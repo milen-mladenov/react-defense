@@ -40,10 +40,11 @@ export const RightOrderSection = ({ newTable, currTables, table, selectTableHand
             server: currentUser.userName,
             guests: data.get("numberOfGuests"),
             note: data.get("tableNote"),
+            amount: 0,
         }
 
-        let table = [Number(data.get("tableNumber")), {}, tableInfo]
-
+        let table = [Number(data.get("tableNumber")), [], tableInfo]
+        console.log(table);
         newTable(table)
         setCreateTable(false)
     }

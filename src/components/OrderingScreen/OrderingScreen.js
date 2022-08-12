@@ -74,10 +74,15 @@ export const OrderingScreen = () => {
         setTable(select)
     }
 
+    function test(){
+        console.log(table);
+        console.log(table[2].amount);
+    }
 
     return (
         <>
             <MainFilters handler={handleItemFilters} />
+            <button onClick={test}>show table</button>
             <div className={styles.orderingScreen}>
                 <LeftOrderSection table={table} filter={filter} handleNewOrder={addToTableOrder} />
                 <RightOrderSection table={table} currTables={currTables} newTable={newTableHandler} selectTableHandler={selectTableHandler} />
