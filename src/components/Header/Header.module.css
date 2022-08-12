@@ -46,6 +46,7 @@ header img {
   border: none;
   border-radius: 5px;
   left: -5rem;
+  z-index: 999;
 }
 
 .menuLinks li {

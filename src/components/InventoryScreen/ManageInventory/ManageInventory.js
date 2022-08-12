@@ -1,14 +1,21 @@
 import { ItemManagement } from '../ItemManagement/ItemManagement'
 import styles from '../InventoryScreen.module.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { updateInventory } from '../../../services/InventoryApi'
-let total
+// let total = 0
 
 export const ManageInventory = ({ items }) => {
     const [currentSelectedInput, setCurrentSelectedInput] = useState({})
     const [calcDiff, setCalcDiff] = useState({});
-
-    total = handleChange()
+    const [total, setTotal] = useState(0)
+    useEffect(() => {
+        cleanUp()
+        let amount = handleChange()
+        setTotal(amount)
+       function cleanUp(){
+        setTotal(0)
+       }
+    }, [items])
 
     function handleDiff(name, diff) {
         setCalcDiff(state => ({
@@ -49,7 +56,7 @@ export const ManageInventory = ({ items }) => {
 
     return (
         <div>
-            <form onSubmit={updateSection} onChange={handleChange}>
+            <form className={styles.manageInventoryForm} onSubmit={updateSection} onChange={handleChange}>
                 {items.map(item => <ItemManagement key={item.ProductID} item={item} handleDiff={handleDiff} updateInput={updateInput} calc={handleChange} />)}
                 <input type="submit" value="submit_item" id="submit_new_items" className={styles.submit_btn} />
             </form>

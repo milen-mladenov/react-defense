@@ -2,17 +2,16 @@ import { useEffect, useState } from "react"
 import styles from './OrderingScreen.module.css'
 import moment from "moment"
 
-import { MainFilters } from "./MainFilters/MainFilters"
-import { LeftOrderSection } from "./LeftOrderSection/LeftOrderSection"
+import { getDayTables, updateTable } from "../../services/TablesApi"
 import { RightOrderSection } from "./RightOrderSection/RightOrderSection"
-
-import { createNewTable, getDayTables, updateTable } from "../../services/TablesApi"
+import { LeftOrderSection } from "./LeftOrderSection/LeftOrderSection"
+import { MainFilters } from "./MainFilters/MainFilters"
 
 
 export const OrderingScreen = () => {
     const [filter, setFilter] = useState("All")
     const [currTables, setCurrTables] = useState([]);
-    const [closedTabtles, setClosedTables] = useState([])
+
     const [table, setTable] = useState([])
     const currDate = moment().format("DD/MM/YYYY")
 
@@ -66,7 +65,6 @@ export const OrderingScreen = () => {
         updateTable(number, curOrder, details)
         allTables.push(currTable)
         setCurrTables(allTables)
-
     }
 
     function selectTableHandler(select) {
@@ -79,9 +77,7 @@ export const OrderingScreen = () => {
         async function getTables(date) {
             let result = await getDayTables(date)
 
-            result.allClosedTables.forEach(table => {
-                setClosedTables(state => ([...state, table]))
-            })
+
             result.allOpenedTables.forEach(table => {
                 setCurrTables(state => ([...state, table]))
             })
@@ -89,14 +85,10 @@ export const OrderingScreen = () => {
         }
     }
 
-    function test() {
-        console.log("yep");
-    }
 
     return (
         <>
             <MainFilters handler={handleItemFilters} />
-            <button onClick={test}>show table</button>
             <div className={styles.orderingScreen}>
                 <LeftOrderSection table={table} filter={filter} handleNewOrder={addToTableOrder} />
                 <RightOrderSection table={table} currTables={currTables} newTable={newTableHandler} selectTableHandler={selectTableHandler} />
