@@ -89,4 +89,19 @@
     right: -15px;
     border-radius: 50%;
     border: none;
+    box-shadow: 0 0px 4px 0;
+}
+
+.dropdownInput {
+    display: flex;
+    flex-direction: column;
+}
+
+.create_employee .emailInput {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.emailInput input {
+    width: 100%;
 }

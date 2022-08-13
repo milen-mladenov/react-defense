@@ -1,6 +1,6 @@
-import { TableRow } from "./TableRows/TableRow"
-import styles from './TableOrder.module.css'
 import { useEffect, useState } from "react"
+import styles from './TableOrder.module.css'
+import { TableRow } from "./TableRows/TableRow"
 
 
 export const TableOrder = ({ order }) => {
@@ -23,22 +23,22 @@ export const TableOrder = ({ order }) => {
                 <thead>
                     <tr id="order_table_head" className={styles.order_table_head}>
                         <th>
-                            <p>коментар</p>
+                            <p>Note</p>
                         </th>
                         <th>
-                            <p>име артикул</p>
+                            <p>Product</p>
                         </th>
                         <th>
-                            <p>поръчани</p>
+                            <p>Ordered</p>
                         </th>
                         <th>
-                            <p>ед. сума</p>
+                            <p>price/per</p>
                         </th>
                     </tr>
                 </thead>
 
                 <tbody className={styles.tableBody}>
-                    {/* {order.map(arr=> arr.map(item => <TableRow key={currOrder.length + item.product} item={item} />))} */}
+
                     {currOrder.map(item => <TableRow key={currOrder.length + item.product} item={item} />)}
                 </tbody>
             </table>

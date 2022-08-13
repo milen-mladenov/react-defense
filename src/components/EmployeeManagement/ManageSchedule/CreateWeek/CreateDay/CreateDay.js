@@ -43,7 +43,6 @@ export const CreateDay = ({ day, dayHandler, scheduleHandler }) => {
 
     return (
         <td>
-
             <div onClick={select} className={`${styles.dayBox} ${styles[dayState]}`}>
                 <p className={styles.day}>{day.format("D")}</p>
                 {hasSchedule ? <ul className={styles.staffList}>

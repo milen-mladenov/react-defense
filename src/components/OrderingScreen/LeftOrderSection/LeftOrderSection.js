@@ -1,11 +1,11 @@
-import styles from './LeftOrderSection.module.css'
 import { useEffect, useState } from 'react';
+import styles from './LeftOrderSection.module.css'
 
+import { getAllInventory, getAllBarItems, getAllKitchenItems } from '../../../services/InventoryApi'
 import { ItemButtons } from './ItemButtons/ItemButtons';
 import { ItemKeypad } from './ItemKeypad/ItemKeypad';
 import { TableInformation } from './TableInformation/TableInformation';
 import { TableOrder } from './TableOrder/TableOrder';
-import { getAllInventory, getAllBarItems, getAllKitchenItems } from '../../../services/InventoryApi'
 
 
 export const LeftOrderSection = ({ table, filter, handleNewOrder }) => {
@@ -118,7 +118,7 @@ export const LeftOrderSection = ({ table, filter, handleNewOrder }) => {
     return (
         <section id="orders_section" className={styles.orders_section}>
             <div id="order_section_action_type" className={styles.order_section_action_type}>
-                <h2 id="order_section_action">Въведи поръчка за маса:</h2>
+                <h2 id="order_section_action">Enter Order for table:</h2>
                 <h2 className="current_table_number">{tableNumber}</h2>
             </div>
             <div className={styles.order_section_buttons}>
@@ -178,8 +178,9 @@ export const LeftOrderSection = ({ table, filter, handleNewOrder }) => {
                         </div>
                     </div>
                 </form>
+
             </div>
-            <button onClick={postNewOrder} className={styles.send_order_button} disabled={!hasNewOrder}>Поръчай</button>
+            <button onClick={postNewOrder} className={styles.send_order_button} disabled={!hasNewOrder}>Order</button>
         </section>
     )
 }

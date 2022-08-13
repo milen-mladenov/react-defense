@@ -13,7 +13,6 @@ import { Login } from './components/Login/Login';
 
 function App() {
 
-  const [loginStatus, setLoginStatus] = useState({})
   const [state, setState] = useState(false)
 
   function loginHandler(user, access) {
@@ -26,10 +25,7 @@ function App() {
   }
 
   function handleUserStatus(user, access) {
-    setLoginStatus({
-      userName: user,
-      userAccess: access
-    })
+
     setUserData({ userName: user, userAccess: access })
   }
 
@@ -38,7 +34,7 @@ function App() {
       <Header logoutHandler={logoutHandler} />
 
       <Routes>
-        <Route path='/' element={<Login handle={loginHandler} user={loginStatus} state={state} />} />
+        <Route path='/' element={<Login handle={loginHandler} state={state} />} />
         <Route path="/ordering" element={<OrderingScreen />} />
         <Route path="/inventory" element={<InventoryScreen />} />
         <Route path='/emp-management' element={<EmployeeManagement />} />

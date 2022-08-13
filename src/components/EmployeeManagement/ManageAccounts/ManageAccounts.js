@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react"
-import styles from "./ManageAccounts.module.css"
-import { createEmployee, getAllEployees } from '../../../services/EmployeeApi'
-import { ListItem } from "./ListItem"
+import { useState } from "react"
 import { useEmployees } from '../../utility/hooks/useEmployees'
+import { createEmployee } from '../../../services/EmployeeApi'
+import styles from "./ManageAccounts.module.css"
+
+import { ListItem } from "./ListItem"
+
 export const ManageAccounts = () => {
     const [passwordType, setPassowrdType] = useState("password")
     const [form, setForm] = useState(false)
@@ -98,7 +100,7 @@ export const ManageAccounts = () => {
             {form && <div className={styles.employee_form}>
                 <button className={styles.closeForm} onClick={closeForm}>X</button>
                 <form onSubmit={createAccount} className={styles.create_employee}>
-                    <div>
+                    <div className={styles.dropdownInput}>
                         <label htmlFor="department"><span className={styles.required}>*</span> Department </label>
                         <select id="department" name="department">
                             <option value="servers">Servers</option>
@@ -107,7 +109,7 @@ export const ManageAccounts = () => {
                             <option value="managers">Managers</option>
                         </select>
                     </div>
-                    <div>
+                    <div className={styles.dropdownInput}>
                         <label htmlFor="position"><span className={styles.required}>*</span> Position </label>
                         <select id="position" name="position">
                             <option value="rotation">Rotation</option>
@@ -116,13 +118,17 @@ export const ManageAccounts = () => {
                             <option value="training">Training</option>
                         </select>
                     </div>
-                    <div>
+                    <div className={styles.dropdownInput}>
                         <label htmlFor="access"><span className={styles.required}>*</span> Access </label>
                         <select id="access" name="access">
                             <option value="normal">Normal</option>
                             <option value="partial">Partial</option>
                             <option value="full">Full</option>
                         </select>
+                    </div>
+                    <div>
+                        <label htmlFor="phone"><span className={styles.required}>*</span> Phone number </label>
+                        <input type="number" name="phone" id="phone" />
                     </div>
                     <div>
                         <label htmlFor="fName"><span className={styles.required}>*</span> First Name </label>
@@ -142,18 +148,15 @@ export const ManageAccounts = () => {
                         <input type={passwordType} name="rePassword" id="rePassword" />
                         <button onClick={handlePassType}>show/hide</button>
                     </div>
-                    <div>
+                    <div className={styles.emailInput}>
                         <label htmlFor="email"><span className={styles.required}>*</span> Email </label>
                         <input type="text" name="email" id="email" />
                     </div>
-                    <div>
-                        <label htmlFor="phone"><span className={styles.required}>*</span> Phone number </label>
-                        <input type="number" name="phone" id="phone" />
-                    </div>
-                    <div>
+                    <div className={styles.noteInput}>
                         <label htmlFor="note"> Note </label>
                         <textarea type="text" name="note" id="note" />
                     </div>
+
                     <button className={styles.createAccountButton}>Create</button>
                 </form>
             </div>}

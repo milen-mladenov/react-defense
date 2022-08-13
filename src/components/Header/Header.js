@@ -22,14 +22,14 @@ export const Header = ({ logoutHandler }) => {
     return (
         <header>
             <div>
-                <h2>Текущ потребител:</h2>
+                <h2>Current user: </h2>
                 {currUser ? <h2 id="current_logged_user">{currUser.userName}</h2> : ""}
 
             </div>
             <div>
 
                 <div>
-                    <Link to="/"><button onClick={logout} id="user_login_button">Смяна на потребителя</button></Link>
+                    <Link to="/"><button onClick={logout} id="user_login_button">Change user</button></Link>
                 </div>
 
                 {dropdown ? <div className={styles.dropdownSection}>

@@ -33,7 +33,6 @@ export const CreateNewItem = () => {
     }
     return (
         <div>
-
             <form onSubmit={onSubmit} className={styles.new_items}>
 
                 <div className={styles.item}>
@@ -69,27 +68,28 @@ export const CreateNewItem = () => {
                         <input type="text" name="SystemQuantity" placeholder="SystemQuantity" />
                     </label>
                 </div>
-                <input type="submit" value="Add" className={styles.submit_btn} />
+                <input type="submit" value="Add" className={styles.addButton} />
             </form>
-            <h2>Currently creating:</h2>
-            <button onClick={create}>Create Items</button>
-            <table className={styles.orderedItems}>
-                <thead>
-                    <tr>
-                        <td>Department</td>
-                        <td>ID</td>
-                        <td>Product Name</td>
-                        <td>Product Code</td>
-                        <td>Retail Price</td>
-                        <td>Sell Price</td>
-                        <td>Quantity</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {currentInputOrder.map(item => <TableRow key={item.ProductID} item={item} />)}
-                </tbody>
-            </table>
-
+            <div className={styles.currentlyCreatingSection}>
+                <h2>Currently creating:</h2>
+                <button className={styles.createItemsBtn} onClick={create}>Create Items</button>
+                <table className={styles.orderedItems}>
+                    <thead>
+                        <tr>
+                            <td>Department</td>
+                            <td>ID</td>
+                            <td>Product Name</td>
+                            <td>Product Code</td>
+                            <td>Retail Price</td>
+                            <td>Sell Price</td>
+                            <td>Quantity</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {currentInputOrder.map(item => <TableRow key={item.ProductID} item={item} />)}
+                    </tbody>
+                </table>
+            </div>
         </div>
 
     )

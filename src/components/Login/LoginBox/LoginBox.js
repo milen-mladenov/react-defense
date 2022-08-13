@@ -1,11 +1,8 @@
 import { useState } from 'react';
-
 import styles from './LoginBox.module.css'
 
-
-
 let maximum;
-export const LoginBox = ({ users, state, handleLogin }) => {
+export const LoginBox = ({ users, handleLogin }) => {
     const [password, setPassword] = useState("")
     const [passwordType, setPassType] = useState("text")
 
@@ -26,7 +23,6 @@ export const LoginBox = ({ users, state, handleLogin }) => {
     }
 
     function clear() {
-
         setPassword("")
     }
 

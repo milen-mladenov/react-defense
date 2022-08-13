@@ -1,15 +1,13 @@
+import { useEffect, useState } from 'react'
 import styles from './InventoryScreen.module.css'
 import { ManageInventory } from './ManageInventory/ManageInventory'
 import { Forms } from './Forms/Forms'
 
-import { useEffect, useState } from 'react'
 import { CreateNewItem } from './CreateNewItem/CreateNewItem'
 
 import { getAllInventory, getAllBarItems, getAllKitchenItems } from '../../services/InventoryApi'
 import { getDayTables } from '../../services/TablesApi'
 import { getUserData } from '../../services/utility'
-
-
 
 export const InventoryScreen = () => {
     const [action, setAction] = useState("");
@@ -28,18 +26,13 @@ export const InventoryScreen = () => {
 
     function allTables(currDate) {
         getTables(currDate)
-
         async function getTables(date) {
             let result = await getDayTables(date)
-
             result.allClosedTables.forEach(table => {
                 setClosedTables(state => ([...state, table]))
             })
-
         }
-
     }
-
 
     async function getFullInventory() {
         setGetItems([])
@@ -58,8 +51,6 @@ export const InventoryScreen = () => {
         const kitchenRes = await getAllKitchenItems()
         setGetItems(kitchenRes)
     }
-
-
 
     function handleAction(act) {
         setAction(act)

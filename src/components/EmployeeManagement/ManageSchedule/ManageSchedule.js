@@ -1,23 +1,23 @@
 import { useState, useEffect } from 'react'
-
-import styles from './ManageSchedule.module.css'
+import { useSchedule } from '../../utility/hooks/useSchedule'
 import moment from 'moment'
+import styles from './ManageSchedule.module.css'
+
 import { buildCalendar } from '../../utility/buildCalendar'
 import { CreateWeek } from './CreateWeek/CreateWeek'
-// import schedule from '../../utility/schedule.json'
 import { DaySchedule } from './DaySchedule/DaySchedule'
 import { CreateSchedule } from './CreateSchedule/CreateSchedule'
-import { useSchedule } from '../../utility/hooks/useSchedule'
+
 let currDaySchedule;
 
 export const ManageSchedule = () => {
-
     const [calendar, setCalendar] = useState([]);
     const [selectedDay, setSelectedDay] = useState(moment());
     const [showSchedule, setShowSchedule] = useState(false);
     const [createSchedule, setCreateSchedule] = useState(false)
     const currDate = moment();
     const schedule = useSchedule()
+
     useEffect(() => {
         setCalendar(buildCalendar(selectedDay));
     }, [selectedDay]);
@@ -60,7 +60,7 @@ export const ManageSchedule = () => {
         <div>
 
             <div>
-                <h2>Current date: {currDate.format("D/M/Y")}</h2>
+                <h2>Current date: {currDate.format("DD/MM/YYYY")}</h2>
             </div>
             <div className={styles.months}>
                 <h2 onClick={prevMonth} className={styles.monthButton}>Prev</h2>
@@ -80,7 +80,7 @@ export const ManageSchedule = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {calendar.map(week => <CreateWeek key={week[0].format("DD/MM/YY")} week={week} scheduleHandler={scheduleHandler} select={setSelectedDay} dayHandler={dayHandler} />)}
+                    {calendar.map(week => <CreateWeek key={week[0].format("DD/MM/YY") + week[0]} week={week} scheduleHandler={scheduleHandler} select={setSelectedDay} dayHandler={dayHandler} />)}
                 </tbody>
             </table>
             {createSchedule && <CreateSchedule day={selectedDay} closeSchedule={closeSchedule} />}

@@ -71,7 +71,7 @@ export const RightOrderSection = ({ newTable, currTables, table, selectTableHand
         <>
             {!showInfo && <section className={styles.table_select_and_menu_section}>
                 <div id="table_select_section" className={styles.table_select_section}>
-                    <button id="open_new_table_button" onClick={openNewTable} className={styles.open_new_table_button}>Отвори нова маса</button>
+                    <button id="open_new_table_button" onClick={openNewTable} className={styles.open_new_table_button}>Open new table</button>
                     <button onClick={() => setShowInfo(!showInfo)} >More Info</button>
                     <div className={styles.filters}>
 
@@ -117,16 +117,16 @@ export const RightOrderSection = ({ newTable, currTables, table, selectTableHand
             {showInfo && <section className={styles.opened_table_section}>
                 <div id="go_back_link" className={styles.go_back_link}>
                     <h2>&#10094;</h2>
-                    <h2 onClick={() => setShowInfo(!showInfo)}>Обратно към отворените маси</h2>
+                    <h2 onClick={() => setShowInfo(!showInfo)}>Back to table selection</h2>
                 </div>
                 <div id="opened_table_name_section" className={styles.opened_table_name_section}>
-                    <h2>Детайли за маса №: <span>{tableNumber}</span></h2>
+                    <h2>Details for table №: <span>{tableNumber}</span></h2>
                     <h2>{tableNote}</h2>
                 </div>
-                <h3 className={styles.opened_table_server}>Сервитьор: {tableServer}</h3>
+                <h3 className={styles.opened_table_server}>Server: {tableServer}</h3>
                 <div className={styles.opened_table_buttons}>
-                    <button onClick={printRecipe} className={styles.opened_table_print}>Касова бележка</button>
-                    <button onClick={closeTable} className={styles.close_table}>Затвори масата</button>
+                    <button onClick={printRecipe} className={styles.opened_table_print}>Recipe</button>
+                    <button onClick={closeTable} className={styles.close_table}>CLOSE TABLE</button>
                 </div>
 
             </section>}
