@@ -8,7 +8,7 @@ import { getUserData } from '../../../services/utility'
 import { createNewTable, updateTable } from '../../../services/TablesApi'
 
 
-export const RightOrderSection = ({ newTable, currTables, table, selectTableHandler }) => {
+export const RightOrderSection = ({ newTable, currTables, table, selectTableHandler,closeTableHandler }) => {
 
     const [showInfo, setShowInfo] = useState(false)
     const [createTable, setCreateTable] = useState(false)
@@ -51,13 +51,13 @@ export const RightOrderSection = ({ newTable, currTables, table, selectTableHand
     }
 
     function closeTable() {
+        printRecipe()
         table[2].Status = false
         let number = table[0]
         let curOrder = table[1]
         let details = table[2]
-        printRecipe()
         updateTable(number, curOrder, details)
-        
+        closeTableHandler()
     }
 
     function printRecipe() {

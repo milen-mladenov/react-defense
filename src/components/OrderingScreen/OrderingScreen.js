@@ -77,7 +77,6 @@ export const OrderingScreen = () => {
         async function getTables(date) {
             let result = await getDayTables(date)
 
-
             result.allOpenedTables.forEach(table => {
                 setCurrTables(state => ([...state, table]))
             })
@@ -85,13 +84,18 @@ export const OrderingScreen = () => {
         }
     }
 
+    function closeTableHandler(){
+        setCurrTables([]);
+        setTable([]);
+        allTables(currDate)
+    }
 
     return (
         <>
             <MainFilters handler={handleItemFilters} />
             <div className={styles.orderingScreen}>
                 <LeftOrderSection table={table} filter={filter} handleNewOrder={addToTableOrder} />
-                <RightOrderSection table={table} currTables={currTables} newTable={newTableHandler} selectTableHandler={selectTableHandler} />
+                <RightOrderSection table={table} closeTableHandler={closeTableHandler} currTables={currTables} newTable={newTableHandler} selectTableHandler={selectTableHandler} />
             </div>
         </>
     )
