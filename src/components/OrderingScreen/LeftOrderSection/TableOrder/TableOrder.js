@@ -18,7 +18,6 @@ export const TableOrder = ({ order }) => {
 
     return (
         <div>
-
             <table id="order_table" className={styles.order_table}>
                 <thead>
                     <tr id="order_table_head" className={styles.order_table_head}>
@@ -38,7 +37,6 @@ export const TableOrder = ({ order }) => {
                 </thead>
 
                 <tbody className={styles.tableBody}>
-
                     {currOrder.map(item => <TableRow key={currOrder.length + item.product} item={item} />)}
                 </tbody>
             </table>

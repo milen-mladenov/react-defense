@@ -55,7 +55,9 @@ export const RightOrderSection = ({ newTable, currTables, table, selectTableHand
         let number = table[0]
         let curOrder = table[1]
         let details = table[2]
+        printRecipe()
         updateTable(number, curOrder, details)
+        
     }
 
     function printRecipe() {
