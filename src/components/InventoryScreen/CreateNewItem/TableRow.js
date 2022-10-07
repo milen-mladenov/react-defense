@@ -3,7 +3,7 @@ export const TableRow = ({ item }) => {
 
     return (
         <tr>
-            <td>{item.Department}</td>
+            <td onClick >{item.Department}</td>
             <td>{item.ProductID}</td>
             <td>{item.ProductName}</td>
             <td>{item.ProductCode}</td>

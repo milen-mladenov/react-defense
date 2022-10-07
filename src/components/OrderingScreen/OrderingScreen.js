@@ -33,7 +33,7 @@ export const OrderingScreen = () => {
         function cleanUp() {
             setCurrTables([])
         }
-    }, [])
+    }, [table])
 
     function addToTableOrder(order) {
         let allTables = currTables
@@ -84,10 +84,9 @@ export const OrderingScreen = () => {
         }
     }
 
-    function closeTableHandler(){
+    function closeTableHandler() {
         setCurrTables([]);
         setTable([]);
-        allTables(currDate)
     }
 
     return (
